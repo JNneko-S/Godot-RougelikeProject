@@ -1,0 +1,27 @@
+@icon("res://Arts/enemies/goblin/goblin_idle_anim_f0.png")
+
+extends Character
+class_name Enemy
+
+@onready var Path_timer : Timer = get_node("PathTimer")
+@onready var player : CharacterBody2D = get_tree().current_scene.get_node("Player")
+@onready var Navi_agent : NavigationAgent2D = get_parent().get_node("NavigationAgent2D")
+
+func chase() -> void:
+	if not Navi_agent.is_target_reached():
+		var vector_to_next_point : Vector2 = Navi_agent.get_next_path_position() - global_position
+		move_direction = vector_to_next_point
+		if vector_to_next_point.x > 0 and Animated_Sprite.flip_h:
+			Animated_Sprite.flip_h = false
+		elif vector_to_next_point.x < 0 and not Animated_Sprite.flip_h:
+			Animated_Sprite.flip_h = true
+
+func _get_path_to_player() -> void:
+	Navi_agent.target_position = player.position
+
+func _on_path_timer_timeout():
+	if is_instance_valid(player):
+		_get_path_to_player()
+	else:
+		Path_timer.stop()
+		move_direction = Vector2.ZERO

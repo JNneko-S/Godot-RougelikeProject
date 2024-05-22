@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://l57wwwdpcdja"]
+
+[ext_resource type="Script" path="res://characters.gd" id="1_gg3uf"]
+[ext_resource type="Script" path="res://FSM.gd" id="2_5vpmo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xwfvl"]
+
+[node name="Chara" type="CharacterBody2D"]
+script = ExtResource("1_gg3uf")
+
+[node name="FiniteStateMachine" type="Node" parent="."]
+script = ExtResource("2_5vpmo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_xwfvl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CollisionShape2D")
