@@ -279,6 +279,7 @@ _data = {
 [node name="FlyingCreature" instance=ExtResource("1_yocom")]
 texture_filter = 1
 script = ExtResource("2_i12vf")
+accerelation = 5
 
 [node name="FiniteStateMachine" parent="." index="0"]
 script = ExtResource("3_n3eyt")
@@ -306,4 +307,4 @@ libraries = {
 }
 
 [node name="PathTimer" parent="." index="5"]
-wait_time = 0.2
+wait_time = 1.0

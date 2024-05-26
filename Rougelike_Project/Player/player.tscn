@@ -516,3 +516,7 @@ frame = 2
 libraries = {
 "": SubResource("AnimationLibrary_apb47")
 }
+
+[node name="Camera2D" type="Camera2D" parent="." index="5"]
+ignore_rotation = false
+zoom = Vector2(2, 2)

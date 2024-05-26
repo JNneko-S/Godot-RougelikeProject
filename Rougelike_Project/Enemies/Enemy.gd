@@ -5,7 +5,10 @@ class_name Enemy
 
 @onready var Path_timer : Timer = get_node("PathTimer")
 @onready var player : CharacterBody2D = get_tree().current_scene.get_node("Player")
-@onready var Navi_agent : NavigationAgent2D = get_parent().get_node("NavigationAgent2D")
+@onready var Navi_agent : NavigationAgent2D =get_node("NavigationAgent2D")
+
+func _ready() -> void:
+	var __ = connect("tree_exited", Callable(get_parent(), "_on_enemy_killed"))
 
 func chase() -> void:
 	if not Navi_agent.is_target_reached():

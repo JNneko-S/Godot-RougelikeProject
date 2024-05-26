@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbic8wjvjppqv"]
+[gd_scene load_steps=7 format=3 uid="uid://cbic8wjvjppqv"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_bm5dk"]
 [ext_resource type="PackedScene" uid="uid://bka0tlem72mwh" path="res://Player/player.tscn" id="1_cgjrj"]
 [ext_resource type="Script" path="res://UI.gd" id="2_ec5dv"]
 [ext_resource type="Texture2D" uid="uid://b5is07hmjmxfu" path="res://Arts/ui (new)/progress bar.png" id="3_qs8t1"]
 [ext_resource type="Texture2D" uid="uid://bilwlm4ef4gfx" path="res://Arts/ui (new)/health_ui.png" id="4_176mf"]
+[ext_resource type="Script" path="res://Room.gd" id="5_q6lld"]
 
 [node name="Game" type="Node2D"]
 texture_filter = 1
@@ -26,9 +27,12 @@ tint_progress = Color(1, 0, 0, 1)
 
 [node name="Rooms" type="Node2D" parent="."]
 
+[node name="Room" type="Node2D" parent="."]
+script = ExtResource("5_q6lld")
+
 [node name="Player" parent="." instance=ExtResource("1_cgjrj")]
 y_sort_enabled = true
-position = Vector2(192, 272)
+position = Vector2(192, 72)
 max_hp = 4
 hp = 4
 
