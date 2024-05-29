@@ -277,6 +277,7 @@ _data = {
 }
 
 [node name="FlyingCreature" instance=ExtResource("1_yocom")]
+z_index = 1
 texture_filter = 1
 script = ExtResource("2_i12vf")
 accerelation = 5
@@ -290,6 +291,7 @@ frame = 1
 
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource("CircleShape2D_two0g")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Hitbox" type="Area2D" parent="." index="3"]
 collision_layer = 0

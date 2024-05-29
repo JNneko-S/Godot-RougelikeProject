@@ -531,7 +531,8 @@ texture = ExtResource("1_hfemv")
 5:7/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_wealw"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 8
+physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_4x5tk")
 
 [node name="Room" type="Node2D"]

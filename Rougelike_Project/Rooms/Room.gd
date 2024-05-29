@@ -35,11 +35,11 @@ func _close_entrance() -> void:
 func _spawn_enemies() -> void:
 	for enemy_position in enemy_positions_container.get_children():
 		var enemy : CharacterBody2D = ENEMY_SCENES.FLYING_CREATURE.instantiate()
-		enemy.global_position = enemy_position.global_position
+		enemy.position = enemy_position.position
 		call_deferred("add_child", enemy)
 		
 		var spawn_exprosion : AnimatedSprite2D = SPAWN_EXPLOSION_SCENE.instantiate()
-		spawn_exprosion.global_position = enemy_position.global_position
+		spawn_exprosion.position = enemy_position.position
 		call_deferred("add_child", spawn_exprosion)
 
 func _on_PlayerDetector_body_entered(_body : CharacterBody2D) -> void:
