@@ -1,10 +1,16 @@
 extends Enemy #Characterから継承されている
 
+const THROWABLE_KNIFE_SCENE : PackedScene = preload("res://Enemies/Goblin/ThrowableKnife.tscn")
+
 const MAX_DISTANCE_TO_PLAYER : int = 300 #ゴブリンが動かない最大距離
 const MIN_DISTANCE_TO_PLAYER : int = 60 #最小距離
 
 var distance_to_player : float
+var can_attack : bool = true
 
+@export var projectile_speed : int = 150
+
+@onready var ATTimer : Timer = get_node("AttackTimer")
 @onready var hitbox : Area2D = get_node("Hitbox")
 @onready var navigation_agent : NavigationAgent2D = $NavigationAgent2D
 
@@ -21,6 +27,11 @@ func _on_path_timer_timeout() -> void:
 		elif distance_to_player < MIN_DISTANCE_TO_PLAYER:
 			_get_path_to_move_away_from_player()
 			#最小距離定数よりも近い場合、 プレイヤーから離れる経路を取得する。
+		else:
+			if can_attack:
+				can_attack = false
+				_throw_knife()
+				ATTimer.start()
 	else:
 		Path_timer.stop()
 		move_direction = Vector2.ZERO
@@ -30,3 +41,14 @@ func _get_path_to_move_away_from_player() -> void:
 	#dirはプレイヤーまでの方向の逆数
 	navigation_agent.target_position = global_position + dir * 100
 	#プレイヤーから100ピクセル離れた位置でパスを更新する。
+
+func _throw_knife() -> void:
+	var projectile : Area2D = THROWABLE_KNIFE_SCENE.instantiate()
+	
+	#ThrowableKnife.gd(7,1)参照してください。
+	#初期位置を示すglobal_position、方向を示すプレイヤーへの正規化ベクトル、速度を示すprojectile_speedを規定している
+	projectile.launch(global_position,(player.position - global_position).normalized(), projectile_speed)
+	get_tree().current_scene.add_child(projectile)
+
+func _on_attack_timer_timeout() -> void:
+	can_attack = true

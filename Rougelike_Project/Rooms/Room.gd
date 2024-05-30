@@ -3,7 +3,8 @@ extends Node2D
 const SPAWN_EXPLOSION_SCENE : PackedScene = preload("res://Enemies/spawn_explosion.tscn")
 
 const ENEMY_SCENES : Dictionary = {
-	"FLYING_CREATURE" : preload("res://Enemies/Flying_creature.tscn")
+	"FLYING_CREATURE" : preload("res://Enemies/Flying_creature.tscn"),
+	"GOBLIN" : preload("res://Enemies/Goblin/goblin.tscn")
 }
 
 #敵の数
@@ -37,7 +38,11 @@ func _close_entrance() -> void:
 
 func _spawn_enemies() -> void:
 	for enemy_position in enemy_positions_container.get_children(): #enemy_positions_containerのすべての子ノードに対して反復処理をする(数える)
-		var enemy : CharacterBody2D = ENEMY_SCENES.FLYING_CREATURE.instantiate() #敵のシーンのコピペを行う
+		var enemy: CharacterBody2D
+		if randi() % 2 == 0:
+			enemy = ENEMY_SCENES.FLYING_CREATURE.instantiate()
+		else:
+			enemy = ENEMY_SCENES.GOBLIN.instantiate()
 		enemy.position = enemy_position.position #また、敵の位置は子ノードの位置に準ずる
 		call_deferred("add_child", enemy)
 		

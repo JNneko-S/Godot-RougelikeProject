@@ -15,5 +15,14 @@ func _ready():
 	assert(collision_shape != null)
 
 func _on_body_entered(body : CharacterBody2D) -> void:
-	body.take_damage(damage, knockback_direction, knockback_force)
+	_collide(body) 
 
+
+#ヒットボックスがタイルマップのコリジョンシェイプに入るとnullになるか
+#bodyがtake_damage関数を持っていないかをチェックする関数
+func _collide(body: Node2D) -> void:
+	if body == null or not body.has_method("take_damage"):
+		queue_free() #ヒットボックスを解放する
+	else: #そうでなければtake_damage関数を呼び出す
+		body.take_damage(damage, knockback_direction, knockback_force) #body enteredシグナルのコード
+	

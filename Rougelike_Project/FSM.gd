@@ -8,7 +8,6 @@ var state: int = -1: set = set_state #現在の状態
 @onready var parent: Character = get_parent() #Characterクラスの親ノード
 @onready var animation_player: AnimationPlayer = parent.get_node("AnimationPlayer") #親ノード内のアニメーションプレイヤー
 
-
 func _physics_process(delta: float) -> void:
 	if state != -1: #有効な状態(-1でない）場合、 _state_logic(delta) を呼び出して状態に応じた処理を行う
 		_state_logic(delta)
