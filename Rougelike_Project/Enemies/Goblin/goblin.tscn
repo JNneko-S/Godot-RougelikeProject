@@ -1,9 +1,12 @@
-[gd_scene load_steps=28 format=3 uid="uid://b6gsk484p463g"]
+[gd_scene load_steps=33 format=3 uid="uid://b6gsk484p463g"]
 
 [ext_resource type="PackedScene" uid="uid://bwk6bh0chqfbe" path="res://Enemies/enemy.tscn" id="1_exhc3"]
 [ext_resource type="Texture2D" uid="uid://vkg5enm68tud" path="res://Arts/effects (new)/enemy_afterdead_explosion_anim_spritesheet.png" id="2_0eqn6"]
+[ext_resource type="Script" path="res://Enemies/Goblin/goblin.gd" id="2_x3goy"]
+[ext_resource type="Script" path="res://Enemies/Goblin/goblinFSM.gd" id="3_l2k2q"]
 [ext_resource type="Texture2D" uid="uid://53q6bub54ttp" path="res://Arts/enemies/goblin/goblin_idle_spritesheet.png" id="3_pncwn"]
 [ext_resource type="Texture2D" uid="uid://blx84b00ljmrp" path="res://Arts/enemies/goblin/goblin_run_spritesheet.png" id="4_esm14"]
+[ext_resource type="Script" path="res://Hitbox.gd" id="7_mviyd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pawrd"]
 atlas = ExtResource("2_0eqn6")
@@ -135,6 +138,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dp1fe"]
+radius = 5.0
+height = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ll76x"]
+radius = 6.98709
+
 [sub_resource type="Animation" id="Animation_cprop"]
 resource_name = "idle"
 length = 0.6
@@ -166,78 +176,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_f3hlc"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("..:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("..:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../AnimatedSprite2D:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../AnimatedSprite2D:animation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"explosion"]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../AnimatedSprite2D:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_ytmxf"]
 resource_name = "walk"
@@ -274,38 +212,38 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("..:self_modulate")
-tracks/0/interp = 1
+tracks/0/path = NodePath("..:rotation")
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("..:rotation")
-tracks/1/interp = 0
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-0.261799, 0.0]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("..:modulate")
-tracks/2/interp = 0
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:modulate")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(100, 100, 100, 1), Color(1, 1, 1, 1), Color(100, 100, 100, 1), Color(1, 1, 1, 1), Color(100, 100, 100, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../AnimatedSprite2D:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
 }
 
 [sub_resource type="Animation" id="Animation_4pqew"]
@@ -397,14 +335,47 @@ _data = {
 
 [node name="goblin" instance=ExtResource("1_exhc3")]
 texture_filter = 1
+collision_mask = 9
+script = ExtResource("2_x3goy")
+accerelation = 30
+max_speed = 100
+
+[node name="FiniteStateMachine" parent="." index="0"]
+script = ExtResource("3_l2k2q")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
-visible = false
 sprite_frames = SubResource("SpriteFrames_667pq")
-animation = &"explosion"
-frame = 1
+animation = &"idle"
+autoplay = "idle"
 
-[node name="AnimationPlayer" parent="." index="3"]
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_dp1fe")
+
+[node name="Hitbox" type="Area2D" parent="." index="3"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("7_mviyd")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0.503376, -0.529732)
+shape = SubResource("CircleShape2D_ll76x")
+debug_color = Color(0.992157, 0, 0, 0.419608)
+
+[node name="AnimationPlayer" parent="." index="4"]
 libraries = {
 "": SubResource("AnimationLibrary_711lp")
 }
+
+[node name="PathTimer" parent="." index="5"]
+wait_time = 0.1
+
+[node name="NavigationAgent2D" parent="." index="6"]
+path_desired_distance = 40.0
+target_desired_distance = 30.0
+path_max_distance = 300.0
+radius = 100.0
+time_horizon_agents = 0.5
+time_horizon_obstacles = 0.5
+
+[connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_body_entered"]
