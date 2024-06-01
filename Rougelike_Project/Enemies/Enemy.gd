@@ -22,7 +22,7 @@ func chase() -> void:
 func _get_path_to_player() -> void:
 	Navi_agent.target_position = player.position
 
-func _on_path_timer_timeout():
+func _on_path_timer_timeout() -> void:
 	if is_instance_valid(player):
 		_get_path_to_player()
 	else:

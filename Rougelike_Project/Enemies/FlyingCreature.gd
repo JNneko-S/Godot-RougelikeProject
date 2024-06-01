@@ -1,4 +1,4 @@
-extends Enemy
+extends Enemy #Characterから継承されている
 
 @onready var hitbox : Area2D = get_node("Hitbox")
 
