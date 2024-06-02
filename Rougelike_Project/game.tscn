@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbic8wjvjppqv"]
+[gd_scene load_steps=9 format=3 uid="uid://cbic8wjvjppqv"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_bm5dk"]
 [ext_resource type="PackedScene" uid="uid://bka0tlem72mwh" path="res://Player/player.tscn" id="1_cgjrj"]
@@ -6,10 +6,21 @@
 [ext_resource type="Texture2D" uid="uid://b5is07hmjmxfu" path="res://Arts/ui (new)/progress bar.png" id="3_qs8t1"]
 [ext_resource type="Texture2D" uid="uid://bilwlm4ef4gfx" path="res://Arts/ui (new)/health_ui.png" id="4_176mf"]
 [ext_resource type="Script" path="res://Rooms.gd" id="5_q6lld"]
+[ext_resource type="AudioStream" uid="uid://dkxm5xh43q0e3" path="res://Music/Three Red Hearts - Penultimate.ogg" id="7_8xvyy"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_sthqg"]
 
 [node name="Game" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_bm5dk")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+texture_filter = 1
+position = Vector2(184.5, 55.0002)
+scale = Vector2(4827, 5024)
+mesh = SubResource("QuadMesh_sthqg")
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("2_ec5dv")
@@ -33,8 +44,11 @@ script = ExtResource("5_q6lld")
 [node name="Player" parent="." instance=ExtResource("1_cgjrj")]
 y_sort_enabled = true
 position = Vector2(192, 72)
-max_hp = 4
-hp = 4
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_8xvyy")
+volume_db = -15.0
+autoplay = true
 
 [connection signal="hp_changed" from="Player" to="UI" method="_on_player_hp_changed"]
 

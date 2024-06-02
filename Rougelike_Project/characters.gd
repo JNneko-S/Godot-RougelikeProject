@@ -11,6 +11,7 @@ signal  hp_changed(new_hp)
 
 @export var accerelation : int = 20
 @export var max_speed : int = 60
+@export var flying : bool = false
 
 @onready var Animated_Sprite : AnimatedSprite2D = get_node("AnimatedSprite2D")
 @onready var state_machine : Node = get_node("FiniteStateMachine")
@@ -27,13 +28,14 @@ func move() -> void:
 	velocity += move_direction * accerelation
 
 func take_damage(dam : int, dir : Vector2, force : int) -> void:
-	self.hp -= dam
-	if hp > 0:
-		state_machine.set_state(state_machine.states.hurt)
-		velocity += dir * force
-	else:
-		state_machine.set_state(state_machine.states.dead)
-		velocity += dir * force* 2
+	if state_machine.state != state_machine.states.hurt and state_machine.state != state_machine.states.dead:
+		self.hp -= dam
+		if hp > 0:
+			state_machine.set_state(state_machine.states.hurt)
+			velocity += dir * force
+		else:
+			state_machine.set_state(state_machine.states.dead)
+			velocity += dir * force* 2
 	
 
 func set_hp(new_hp: int) -> void:

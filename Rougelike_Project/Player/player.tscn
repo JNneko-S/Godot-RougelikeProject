@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bka0tlem72mwh"]
+[gd_scene load_steps=45 format=3 uid="uid://bka0tlem72mwh"]
 
 [ext_resource type="PackedScene" uid="uid://l57wwwdpcdja" path="res://characters.tscn" id="1_yabtc"]
 [ext_resource type="Texture2D" uid="uid://xrbv4c1olww3" path="res://Arts/heroes/knight/knight_idle_spritesheet.png" id="2_lxv6m"]
@@ -7,8 +7,10 @@
 [ext_resource type="Script" path="res://PlayerFSM.gd" id="3_pgk80"]
 [ext_resource type="Texture2D" uid="uid://vkg5enm68tud" path="res://Arts/effects (new)/enemy_afterdead_explosion_anim_spritesheet.png" id="4_50x7b"]
 [ext_resource type="Texture2D" uid="uid://e5w03hfp1m6u" path="res://Arts/heroes/knight/weapon_sword_1.png" id="6_7qbrv"]
-[ext_resource type="Script" path="res://Hitbox.gd" id="7_fjyw3"]
+[ext_resource type="Shader" path="res://Player/White.gdshader" id="7_bgosf"]
 [ext_resource type="Texture2D" uid="uid://cmdws8oiuhxy2" path="res://Arts/effects (new)/slash_effect_anim_spritesheet.png" id="7_uoekk"]
+[ext_resource type="Script" path="res://Player/Sword.gd" id="9_u16b2"]
+[ext_resource type="AudioStream" uid="uid://dpqhr2ul0yc4o" path="res://Music/SE/10_Battle_SFX/35_Miss_Evade_02.wav" id="11_7si2s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qy7y5"]
 atlas = ExtResource("4_50x7b")
@@ -382,12 +384,200 @@ _data = {
 "move": SubResource("Animation_pdh3t")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j21p3"]
+shader = ExtResource("7_bgosf")
+shader_parameter/active = false
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4akoa"]
 radius = 2.5423
 height = 17.1931
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h6bgs"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 26.0
+gravity = Vector3(0, 0, 0)
+linear_accel_max = 5.0
+radial_accel_max = 45.0
+tangential_accel_min = 8.44
+tangential_accel_max = 100.0
+turbulence_enabled = true
+
+[sub_resource type="Animation" id="Animation_kvsob"]
+resource_name = "Cyclone_attack"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/SwordSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.8, 1.2, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.785398, 0.785398, 0.785398, 2.0944, 2.0944, -0.785398]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/SwordSprite:material:shader_parameter/active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.5708, 4.71239, 10.9956, 13.6136, 10.9956]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/SwordSprite/Hitbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node2D/SwordSprite/ChargeParticles:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../AudioSEPlayer:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+
 [sub_resource type="Animation" id="Animation_qk5ug"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/SwordSprite/ChargeParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/SwordSprite:material:shader_parameter/active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/SwordSprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.785398]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node2D/SwordSprite/Hitbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Node2D/SwordSprite:material")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_j21p3")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SlashSprite:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../AudioSEPlayer:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_rt3kn"]
 resource_name = "attack"
@@ -453,11 +643,142 @@ tracks/4/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Node2D/SwordSprite/ChargeParticles:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Node2D/SwordSprite:material:shader_parameter/active")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_clh4x"]
+resource_name = "cancel_attack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/SwordSprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.785398]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/SwordSprite/ChargeParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/SwordSprite/Hitbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node2D/SwordSprite:material")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_j21p3")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SlashSprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_saehw"]
+resource_name = "charge"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/SwordSprite:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/SwordSprite/ChargeParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_apb47"]
 _data = {
+"Cyclone_attack": SubResource("Animation_kvsob"),
 "RESET": SubResource("Animation_qk5ug"),
-"attack": SubResource("Animation_rt3kn")
+"attack": SubResource("Animation_rt3kn"),
+"cancel_attack": SubResource("Animation_clh4x"),
+"charge": SubResource("Animation_saehw")
 }
 
 [node name="Player" instance=ExtResource("1_yabtc")]
@@ -490,6 +811,7 @@ libraries = {
 rotation = -1.5708
 
 [node name="SwordSprite" type="Sprite2D" parent="Sword/Node2D" index="0"]
+material = SubResource("ShaderMaterial_j21p3")
 position = Vector2(7, 3)
 rotation = -0.785398
 texture = ExtResource("6_7qbrv")
@@ -497,14 +819,21 @@ offset = Vector2(5, -4)
 
 [node name="Hitbox" type="Area2D" parent="Sword/Node2D/SwordSprite" index="0"]
 collision_layer = 0
-collision_mask = 4
-script = ExtResource("7_fjyw3")
+collision_mask = 20
+script = ExtResource("9_u16b2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/Node2D/SwordSprite/Hitbox" index="0"]
 position = Vector2(4.94973, -3.53551)
 rotation = 0.785398
 shape = SubResource("CapsuleShape2D_4akoa")
 disabled = true
+
+[node name="ChargeParticles" type="GPUParticles2D" parent="Sword/Node2D/SwordSprite" index="1"]
+position = Vector2(4.94973, -3.53551)
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_h6bgs")
+lifetime = 0.6
 
 [node name="SlashSprite" type="Sprite2D" parent="Sword" index="1"]
 visible = false
@@ -522,3 +851,8 @@ libraries = {
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
 ignore_rotation = false
 zoom = Vector2(2, 2)
+
+[node name="AudioSEPlayer" type="AudioStreamPlayer" parent="." index="6"]
+stream = ExtResource("11_7si2s")
+
+[connection signal="area_entered" from="Sword/Node2D/SwordSprite/Hitbox" to="Sword/Node2D/SwordSprite/Hitbox" method="_on_area_entered"]
