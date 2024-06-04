@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://wlxa345n3fp8" path="res://Rooms/Room.tscn" id="1_1vnab"]
 [ext_resource type="PackedScene" uid="uid://by1eeq8uuog5e" path="res://door.tscn" id="2_bxw8r"]
-[ext_resource type="PackedScene" uid="uid://bka0tlem72mwh" path="res://Player/player.tscn" id="3_3np8y"]
+[ext_resource type="PackedScene" uid="uid://bka0tlem72mwh" path="res://Character/Player/player.tscn" id="3_3np8y"]
 [ext_resource type="PackedScene" uid="uid://b6gsk484p463g" path="res://Enemies/Goblin/goblin.tscn" id="4_4buvv"]
 
 [sub_resource type="SystemFont" id="SystemFont_7l3kw"]
