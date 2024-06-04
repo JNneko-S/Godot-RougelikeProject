@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bwk6bh0chqfbe" path="res://Enemies/enemy.tscn" id="1_yocom"]
 [ext_resource type="Texture2D" uid="uid://cgk03sn7d4pbg" path="res://Arts/enemies/flying creature/fly_anim_spritesheet.png" id="2_h473p"]
 [ext_resource type="Script" path="res://Enemies/FlyingCreature.gd" id="2_i12vf"]
-[ext_resource type="Texture2D" uid="uid://vkg5enm68tud" path="res://Arts/effects (new)/enemy_afterdead_explosion_anim_spritesheet.png" id="2_ra05l"]
+[ext_resource type="Texture2D" uid="uid://vkg5enm68tud" path="res://effects (new)/enemy_afterdead_explosion_anim_spritesheet.png" id="2_ra05l"]
 [ext_resource type="Script" path="res://Enemies/FlyingCreatureFSM.gd" id="3_n3eyt"]
 [ext_resource type="Script" path="res://Hitbox.gd" id="6_8kdxb"]
 
@@ -281,7 +281,6 @@ z_index = 1
 texture_filter = 1
 script = ExtResource("2_i12vf")
 accerelation = 5
-flying = true
 
 [node name="FiniteStateMachine" parent="." index="0"]
 script = ExtResource("3_n3eyt")

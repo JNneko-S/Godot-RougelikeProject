@@ -14,7 +14,6 @@ var can_attack : bool = true
 @onready var ATTimer : Timer = get_node("AttackTimer")
 @onready var hitbox : Area2D = get_node("Hitbox")
 @onready var navigation_agent : NavigationAgent2D = $NavigationAgent2D
-@onready var AudioPlayer : AudioStreamPlayer = get_node("AudioStreamPlayer")
 
 func _process(_delta : float) -> void:
 	hitbox.knockback_direction = velocity.normalized()
@@ -35,7 +34,6 @@ func _on_path_timer_timeout() -> void:
 				#Goblinが壁に向かって攻撃する問題が発生
 				can_attack = false
 				_throw_knife()
-				AudioPlayer.playing = true
 				ATTimer.start()
 	else:
 		Path_timer.stop()

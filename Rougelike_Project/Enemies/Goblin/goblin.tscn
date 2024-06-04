@@ -1,13 +1,12 @@
-[gd_scene load_steps=34 format=3 uid="uid://b6gsk484p463g"]
+[gd_scene load_steps=33 format=3 uid="uid://b6gsk484p463g"]
 
 [ext_resource type="PackedScene" uid="uid://bwk6bh0chqfbe" path="res://Enemies/enemy.tscn" id="1_exhc3"]
-[ext_resource type="Texture2D" uid="uid://vkg5enm68tud" path="res://Arts/effects (new)/enemy_afterdead_explosion_anim_spritesheet.png" id="2_0eqn6"]
+[ext_resource type="Texture2D" uid="uid://vkg5enm68tud" path="res://effects (new)/enemy_afterdead_explosion_anim_spritesheet.png" id="2_0eqn6"]
 [ext_resource type="Script" path="res://Enemies/Goblin/goblin.gd" id="2_x3goy"]
 [ext_resource type="Script" path="res://Enemies/Goblin/goblinFSM.gd" id="3_l2k2q"]
 [ext_resource type="Texture2D" uid="uid://53q6bub54ttp" path="res://Arts/enemies/goblin/goblin_idle_spritesheet.png" id="3_pncwn"]
 [ext_resource type="Texture2D" uid="uid://blx84b00ljmrp" path="res://Arts/enemies/goblin/goblin_run_spritesheet.png" id="4_esm14"]
 [ext_resource type="Script" path="res://Hitbox.gd" id="7_mviyd"]
-[ext_resource type="AudioStream" uid="uid://dirq5m3gyfe0d" path="res://Music/SE/10_Battle_SFX/51_Flee_02.wav" id="8_r33be"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pawrd"]
 atlas = ExtResource("2_0eqn6")
@@ -339,8 +338,6 @@ texture_filter = 1
 collision_mask = 13
 script = ExtResource("2_x3goy")
 projectile_speed = 150
-max_hp = 1
-hp = 1
 accerelation = 30
 max_speed = 100
 
@@ -389,10 +386,6 @@ one_shot = true
 
 [node name="AimRayCast" type="RayCast2D" parent="." index="8"]
 collision_mask = 9
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="9"]
-stream = ExtResource("8_r33be")
-volume_db = 8.433
 
 [connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_body_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
