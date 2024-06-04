@@ -45,6 +45,12 @@ script = ExtResource("5_q6lld")
 y_sort_enabled = true
 position = Vector2(192, 72)
 
+[node name="Sword" parent="Player/Weapons" index="0"]
+visible = true
+
+[node name="Weapon" parent="Player/Weapons" index="1"]
+visible = false
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_8xvyy")
 volume_db = -15.0

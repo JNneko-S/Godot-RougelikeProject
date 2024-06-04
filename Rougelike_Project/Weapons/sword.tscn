@@ -1,16 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://ckn6vwsgrs3px"]
+[gd_scene load_steps=13 format=3 uid="uid://ckn6vwsgrs3px"]
 
 [ext_resource type="PackedScene" uid="uid://bogf1uvmmclgu" path="res://Weapons/weapon.tscn" id="1_yp5ij"]
 [ext_resource type="Texture2D" uid="uid://c6a0ab4aan6mf" path="res://Arts/Shikashi's Fantasy Icons Pack v2/#1 - Transparent Icons.png" id="2_a7bkb"]
 [ext_resource type="Shader" path="res://Character/Player/White.gdshader" id="2_d362t"]
 [ext_resource type="Texture2D" uid="uid://cmdws8oiuhxy2" path="res://effects (new)/slash_effect_anim_spritesheet.png" id="3_vbd7l"]
+[ext_resource type="AudioStream" uid="uid://dpqhr2ul0yc4o" path="res://Music/SE/10_Battle_SFX/35_Miss_Evade_02.wav" id="5_l31sc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q6ogq"]
 shader = ExtResource("2_d362t")
 shader_parameter/active = false
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f4exx"]
-radius = 3.0
+radius = 5.62
 height = 34.0
 
 [sub_resource type="Animation" id="Animation_xhlxx"]
@@ -85,12 +86,61 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioSEPlayer:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Node2D/Sprite/Hitbox/CollisionShape2D:shape:radius")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.62]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ChargingSE:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ChargedSE:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
 "values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_rec1e"]
 resource_name = "attack"
 length = 0.8
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -110,10 +160,10 @@ tracks/1/path = NodePath("Node2D/Sprite/Hitbox/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false, true]
+"values": [false, true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -151,6 +201,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [false, false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioSEPlayer:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_rfahh"]
 resource_name = "charge"
@@ -178,22 +240,46 @@ tracks/1/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ChargingSE:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ChargedSE:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_xp7jh"]
-resource_name = "Cyclone_attack"
+resource_name = "strong_attack"
 length = 1.4
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Node2D/Sprite/Hitbox/CollisionShape2D:shape:height")
-tracks/0/interp = 1
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1.3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [34.0]
+"values": [45.38, 34.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -202,7 +288,7 @@ tracks/1/path = NodePath("Node2D/Sprite/Hitbox/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 1),
+"times": PackedFloat32Array(0, 0.05, 1.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -255,20 +341,45 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioSEPlayer:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Node2D/Sprite/Hitbox/CollisionShape2D:shape:radius")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [5.62, 5.62]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_37tqv"]
 _data = {
-"Cyclone_attack": SubResource("Animation_xp7jh"),
 "RESET": SubResource("Animation_xhlxx"),
 "attack": SubResource("Animation_rec1e"),
-"charge": SubResource("Animation_rfahh")
+"charge": SubResource("Animation_rfahh"),
+"strong_attack": SubResource("Animation_xp7jh")
 }
 
-[node name="Sword" instance=ExtResource("1_yp5ij")]
+[node name="Weapon" instance=ExtResource("1_yp5ij")]
 
 [node name="Sprite" parent="Node2D" index="0"]
 material = SubResource("ShaderMaterial_q6ogq")
-position = Vector2(13, 3.00005)
+position = Vector2(9, -3)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_a7bkb")
 hframes = 16
 vframes = 27
@@ -277,9 +388,6 @@ frame = 82
 [node name="CollisionShape2D" parent="Node2D/Sprite/Hitbox" index="0"]
 position = Vector2(4.24263, -4.24262)
 shape = SubResource("CapsuleShape2D_f4exx")
-
-[node name="ChargeParticles" parent="Node2D/Sprite" index="1"]
-emitting = true
 
 [node name="SlashSprite" type="Sprite2D" parent="Node2D" index="1"]
 visible = false
@@ -290,8 +398,10 @@ texture = ExtResource("3_vbd7l")
 hframes = 3
 frame = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D" index="2"]
-root_node = NodePath("../..")
+[node name="AudioSEPlayer" parent="." index="1"]
+stream = ExtResource("5_l31sc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_37tqv")
 }

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bogf1uvmmclgu"]
+[gd_scene load_steps=6 format=3 uid="uid://bogf1uvmmclgu"]
 
 [ext_resource type="Script" path="res://Weapons/Weapon.gd" id="1_5a7hm"]
+[ext_resource type="AudioStream" uid="uid://dpalmodgpweqg" path="res://Music/SE/10_Battle_SFX/69_Enemy_death_01.wav" id="3_o2x5k"]
 [ext_resource type="Script" path="res://Character/Player/WeaponHitbox.gd" id="3_s50wo"]
-[ext_resource type="AudioStream" uid="uid://dpqhr2ul0yc4o" path="res://Music/SE/10_Battle_SFX/35_Miss_Evade_02.wav" id="4_jjqx8"]
+[ext_resource type="AudioStream" uid="uid://d33sh7qfurana" path="res://Music/SE/10_Battle_SFX/39_Block_03.wav" id="4_760c2"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nokxm"]
 particle_flag_disable_z = true
@@ -46,6 +47,11 @@ process_material = SubResource("ParticleProcessMaterial_nokxm")
 lifetime = 0.6
 
 [node name="AudioSEPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_jjqx8")
+
+[node name="ChargingSE" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_o2x5k")
+
+[node name="ChargedSE" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_760c2")
 
 [connection signal="area_entered" from="Node2D/Sprite/Hitbox" to="Node2D/Sprite/Hitbox" method="_on_area_entered"]

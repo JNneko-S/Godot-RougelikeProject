@@ -30,13 +30,13 @@ func _open_doors() -> void:
 	for door in door_container.get_children():
 		door.open() #親ノードのDoorsを参照して子ノードを取得
 
-func _close_entrance() -> void:
+func _close_entrance() -> void: #出れないようにする処理
 	for entry_position in entrance.get_children(): #entranceのすべての子ノードに対して反復処理をする
 		print(tilemap.local_to_map(entry_position.position))
 		tilemap.set_cell(0, tilemap.local_to_map(entry_position.position), 0, Vector2i(2,6)) #配置するタイルを指定する
 		tilemap.set_cell(0, tilemap.local_to_map(entry_position.position) + Vector2i.DOWN, 2, Vector2i.ZERO) #どこに配置をするかを決める
 
-func _spawn_enemies() -> void:
+func _spawn_enemies() -> void: #敵の出現の処理
 	for enemy_position in enemy_positions_container.get_children(): #enemy_positions_containerのすべての子ノードに対して反復処理をする(数える)
 		var enemy: CharacterBody2D
 		if randi() % 2 == 0:
