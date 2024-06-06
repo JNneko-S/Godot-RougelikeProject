@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bka0tlem72mwh"]
+[gd_scene load_steps=33 format=3 uid="uid://bka0tlem72mwh"]
 
 [ext_resource type="PackedScene" uid="uid://l57wwwdpcdja" path="res://characters.tscn" id="1_yabtc"]
 [ext_resource type="Texture2D" uid="uid://xrbv4c1olww3" path="res://Arts/heroes/knight/knight_idle_spritesheet.png" id="2_lxv6m"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://PlayerFSM.gd" id="3_pgk80"]
 [ext_resource type="Texture2D" uid="uid://vkg5enm68tud" path="res://effects (new)/enemy_afterdead_explosion_anim_spritesheet.png" id="4_50x7b"]
 [ext_resource type="PackedScene" uid="uid://ckn6vwsgrs3px" path="res://Weapons/sword.tscn" id="7_st21i"]
-[ext_resource type="PackedScene" uid="uid://cbodq3xp55rpw" path="res://Weapons/Hammer.tscn" id="8_0mw24"]
 [ext_resource type="AudioStream" uid="uid://d33sh7qfurana" path="res://Music/SE/10_Battle_SFX/39_Block_03.wav" id="9_ncigy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qy7y5"]
@@ -177,6 +176,42 @@ tracks/2/path = NodePath("../AudioSEPlayer:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../AnimatedSprite2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../AnimatedSprite2D:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../AnimatedSprite2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -394,8 +429,6 @@ hp = 4
 script = ExtResource("3_pgk80")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
-modulate = Color(100, 100, 100, 1)
-rotation = -0.349066
 sprite_frames = SubResource("SpriteFrames_80tqi")
 animation = &"idle"
 
@@ -411,9 +444,6 @@ libraries = {
 [node name="Weapons" type="Node2D" parent="." index="4"]
 
 [node name="Sword" parent="Weapons" index="0" instance=ExtResource("7_st21i")]
-visible = false
-
-[node name="Weapon" parent="Weapons" index="1" instance=ExtResource("8_0mw24")]
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
 ignore_rotation = false

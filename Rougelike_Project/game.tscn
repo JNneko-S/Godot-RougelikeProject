@@ -45,11 +45,12 @@ script = ExtResource("5_q6lld")
 y_sort_enabled = true
 position = Vector2(192, 72)
 
+[node name="AnimatedSprite2D" parent="Player" index="1"]
+modulate = Color(1, 1, 1, 1)
+rotation = 0.0
+
 [node name="Sword" parent="Player/Weapons" index="0"]
 visible = true
-
-[node name="Weapon" parent="Player/Weapons" index="1"]
-visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_8xvyy")
