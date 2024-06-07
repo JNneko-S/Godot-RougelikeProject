@@ -311,5 +311,3 @@ libraries = {
 
 [node name="PathTimer" parent="." index="5"]
 wait_time = 1.0
-
-[connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_body_entered"]

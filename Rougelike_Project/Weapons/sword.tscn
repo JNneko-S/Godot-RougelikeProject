@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ckn6vwsgrs3px"]
+[gd_scene load_steps=14 format=3 uid="uid://ckn6vwsgrs3px"]
 
 [ext_resource type="PackedScene" uid="uid://bogf1uvmmclgu" path="res://Weapons/weapon.tscn" id="1_yp5ij"]
 [ext_resource type="Texture2D" uid="uid://c6a0ab4aan6mf" path="res://Arts/Shikashi's Fantasy Icons Pack v2/#1 - Transparent Icons.png" id="2_a7bkb"]
@@ -13,6 +13,10 @@ shader_parameter/active = false
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f4exx"]
 radius = 5.62
 height = 34.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dw11i"]
+radius = 5.0
+height = 28.0
 
 [sub_resource type="Animation" id="Animation_xhlxx"]
 length = 0.001
@@ -397,6 +401,11 @@ scale = Vector2(1, 1.28)
 texture = ExtResource("3_vbd7l")
 hframes = 3
 frame = 1
+
+[node name="CollisionShape2D" parent="PlayerDetector" index="0"]
+position = Vector2(-8, -9)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_dw11i")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 libraries = {

@@ -44,7 +44,7 @@ func _spawn_enemies() -> void: #敵の出現の処理
 		else:
 			enemy = ENEMY_SCENES.GOBLIN.instantiate()
 		enemy.position = enemy_position.position #また、敵の位置は子ノードの位置に準ずる
-		call_deferred("add_child", enemy)
+		self.call_deferred("add_child", enemy)
 		
 		#この三行は敵が出てきた時に出る爆発のエフェクト --ここから
 		var spawn_exprosion : AnimatedSprite2D = SPAWN_EXPLOSION_SCENE.instantiate()

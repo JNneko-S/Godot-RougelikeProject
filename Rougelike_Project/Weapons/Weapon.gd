@@ -42,9 +42,15 @@ func is_busy() -> bool:
 		return true
 	return false
 
-func _on_player_detector_body_entered(_body : CharacterBody2D) -> void:
-	if _body != null:
+func _on_player_detector_body_entered(_body : Node2D) -> void:
+	if _body is CharacterBody2D:
 		PlayerDetector.set_collision_mask_value(1, true)
 		PlayerDetector.set_collision_mask_value(2, true)
 		_body.pick_up_weapon(self)
+		on_floor = false
 		position = Vector2.ZERO
+
+
+
+
+
