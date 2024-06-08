@@ -19,7 +19,6 @@ rotation = 0.662871
 shape = SubResource("CapsuleShape2D_eq53n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 1
 texture = ExtResource("2_36c6a")
 
 [connection signal="body_exited" from="." to="." method="_on_ThrowableKnife_body_exited"]

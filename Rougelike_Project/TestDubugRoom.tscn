@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://wlxa345n3fp8" path="res://Rooms/Room.tscn" id="1_1vnab"]
 [ext_resource type="PackedScene" uid="uid://by1eeq8uuog5e" path="res://door.tscn" id="2_bxw8r"]
-[ext_resource type="PackedScene" uid="uid://bka0tlem72mwh" path="res://Player/player.tscn" id="3_3np8y"]
-[ext_resource type="PackedScene" uid="uid://b6gsk484p463g" path="res://Enemies/Goblin/goblin.tscn" id="4_4buvv"]
+[ext_resource type="PackedScene" uid="uid://bka0tlem72mwh" path="res://Character/Player/player.tscn" id="3_3np8y"]
+[ext_resource type="PackedScene" uid="uid://cbodq3xp55rpw" path="res://Weapons/Hammer.tscn" id="5_yx3os"]
 
 [sub_resource type="SystemFont" id="SystemFont_7l3kw"]
 
@@ -67,13 +67,17 @@ position = Vector2(192, 16)
 [node name="Marker2D" type="Marker2D" parent="EnemyPositions" index="0"]
 position = Vector2(96, 63)
 
+[node name="Player" parent="." index="7" instance=ExtResource("3_3np8y")]
+position = Vector2(109, 166)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2(55, 135.5)
 shape = SubResource("RectangleShape2D_16frk")
 
-[node name="Player" parent="." index="7" instance=ExtResource("3_3np8y")]
-position = Vector2(109, 166)
+[node name="Weapon" parent="." index="9" instance=ExtResource("5_yx3os")]
+position = Vector2(173, 127)
+on_floor = true
 
-[node name="goblin" parent="." index="8" instance=ExtResource("4_4buvv")]
-position = Vector2(311, 54)
-max_speed = 25
+[node name="Weapon2" parent="." index="10" instance=ExtResource("5_yx3os")]
+position = Vector2(233, 67)
+on_floor = true

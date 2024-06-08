@@ -19,16 +19,18 @@ func _ready():
 	timer.wait_time	 = 1
 	add_child(timer)
 
-func _on_body_entered(body : CharacterBody2D) -> void:
-	body_inside = true
-	timer.start()
-	while body_inside:
-		_collide(body) 
-		await timer.timeout
+func _on_body_entered(body : Node2D) -> void:
+	if body is CharacterBody2D:
+		body_inside = true
+		timer.start()
+		while body_inside:
+			_collide(body) 
+			await timer.timeout
 
-func _on_body_exited(_body : CharacterBody2D) -> void:
-	body_inside = false
-	timer.stop()
+func _on_body_exited(_body : Node2D) -> void:
+	if _body is CharacterBody2D:
+		body_inside = false
+		timer.stop()
 
 #ヒットボックスがタイルマップのコリジョンシェイプに入るとnullになるか
 #bodyがtake_damage関数を持っていないかをチェックする関数

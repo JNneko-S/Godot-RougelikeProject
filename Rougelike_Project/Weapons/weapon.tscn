@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://bogf1uvmmclgu"]
+
+[ext_resource type="Script" path="res://Weapons/Weapon.gd" id="1_5a7hm"]
+[ext_resource type="AudioStream" uid="uid://dpalmodgpweqg" path="res://Music/SE/10_Battle_SFX/69_Enemy_death_01.wav" id="3_o2x5k"]
+[ext_resource type="Script" path="res://Character/Player/WeaponHitbox.gd" id="3_s50wo"]
+[ext_resource type="AudioStream" uid="uid://d33sh7qfurana" path="res://Music/SE/10_Battle_SFX/39_Block_03.wav" id="4_760c2"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nokxm"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 26.0
+gravity = Vector3(0, 0, 0)
+linear_accel_max = 5.0
+radial_accel_max = 45.0
+tangential_accel_min = 8.44
+tangential_accel_max = 100.0
+turbulence_enabled = true
+
+[node name="Weapon" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_5a7hm")
+
+[node name="Node2D" type="Node2D" parent="."]
+rotation = -1.5708
+
+[node name="Sprite" type="Sprite2D" parent="Node2D"]
+position = Vector2(7, 3)
+rotation = -0.785398
+offset = Vector2(5, -4)
+
+[node name="Hitbox" type="Area2D" parent="Node2D/Sprite"]
+collision_layer = 0
+collision_mask = 20
+script = ExtResource("3_s50wo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite/Hitbox"]
+position = Vector2(4.94973, -3.53551)
+rotation = 0.785398
+disabled = true
+
+[node name="ChargeParticles" type="GPUParticles2D" parent="Node2D/Sprite"]
+position = Vector2(4.94973, -3.53551)
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_nokxm")
+lifetime = 0.6
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+
+[node name="AudioSEPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="ChargingSE" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_o2x5k")
+
+[node name="ChargedSE" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_760c2")
+
+[connection signal="area_entered" from="Node2D/Sprite/Hitbox" to="Node2D/Sprite/Hitbox" method="_on_area_entered"]
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
