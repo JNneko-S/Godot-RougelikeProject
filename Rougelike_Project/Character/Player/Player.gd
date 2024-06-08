@@ -34,6 +34,7 @@ func get_input() -> void: #入力の受付
 			_switch_weapon(DOWN)
 		elif Input.is_action_just_pressed("UI_throw") and current_weapon.get_index() != 0:
 			_drop_weapon()
+			
 	
 	current_weapon.get_input()
 
@@ -78,6 +79,8 @@ func _drop_weapon() -> void:
 	
 	var throw_dir : Vector2 = (get_global_mouse_position() - position).normalized()
 	weapon_to_drop.interpolate_pos(position, position + throw_dir * 50)
+	
+	print("武器を捨てる")
 ###
 
 func cancel_attack() -> void:
