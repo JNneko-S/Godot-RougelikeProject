@@ -2,10 +2,14 @@ extends Character
 
 enum {UP,DOWN}
 
+const DUST_SCENE : PackedScene = preload("res://Character/dust.tscn")
+
 var current_weapon : Node2D
 
 ## ノードを取得して格納している変数
+@onready var parent : Node2D = get_parent()
 @onready var weapons : Node2D = get_node("Weapons")
+@onready var dust_position : Marker2D = get_node("DustPoisiton")
 
 func _ready() -> void:
 	current_weapon = weapons.get_child(0)
@@ -86,4 +90,7 @@ func _drop_weapon() -> void:
 func cancel_attack() -> void:
 	current_weapon.cancel_attack()
 
-
+func spawn_dust() -> void:
+	var Dust : Sprite2D = DUST_SCENE.instantiate()
+	Dust.position = dust_position.global_position
+	parent.get_child(get_index() - 1).add_sibling(Dust)

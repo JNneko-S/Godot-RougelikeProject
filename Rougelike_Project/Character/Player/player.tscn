@@ -407,6 +407,20 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_dust"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_erg8u"]
 _data = {
@@ -452,3 +466,6 @@ zoom = Vector2(2, 2)
 [node name="AudioSEPlayer" type="AudioStreamPlayer" parent="." index="6"]
 stream = ExtResource("9_ncigy")
 pitch_scale = 1.1
+
+[node name="DustPoisiton" type="Marker2D" parent="." index="7"]
+position = Vector2(0, 6)
