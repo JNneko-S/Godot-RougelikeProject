@@ -458,6 +458,7 @@ libraries = {
 [node name="Weapons" type="Node2D" parent="." index="4"]
 
 [node name="Sword" parent="Weapons" index="0" instance=ExtResource("7_st21i")]
+visible = false
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
 ignore_rotation = false

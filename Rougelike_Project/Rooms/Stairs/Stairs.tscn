@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://ddvif7efar23q"]
+
+[node name="Stairs" type="Area2D"]
