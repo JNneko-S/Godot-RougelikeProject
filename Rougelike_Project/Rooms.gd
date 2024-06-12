@@ -1,8 +1,9 @@
 extends Node2D
-class_name Room
+
 
 const SPAWN_ROOMS: Array = [preload("res://Rooms/SpawnRoom0.tscn"),preload("res://Rooms/SpawnRoom1.tscn")]
 const INTERMEDIATE_ROOMS: Array = [preload("res://Rooms/Room0.tscn"),preload("res://Rooms/Room1.tscn"),preload("res://Rooms/Room2.tscn")]
+const SPECIAL_ROOMS: Array = [preload("res://Rooms/SpecialRoom0.tscn")]
 const END_ROOMS: Array = [preload("res://Rooms/EndRoom0.tscn")]
 
 const TILE_SIZE : int = 16
@@ -18,6 +19,7 @@ func _ready() -> void:
 
 func _spawn_rooms() -> void:
 	var previous_room : Node2D
+	var special_room_spawned : bool = false
 	
 	for i in num_levels: #生成する部屋の数だけ繰り返す (default:5)
 		var room: Node2D
@@ -29,8 +31,11 @@ func _spawn_rooms() -> void:
 			if i == num_levels - 1:
 				room =END_ROOMS[randi() % END_ROOMS.size()].instantiate()
 			else: #1よりも上だと敵スポーン部屋が生成する
-				room = INTERMEDIATE_ROOMS[randi() % INTERMEDIATE_ROOMS.size()].instantiate()
-			
+				if (randi() % 3 == 0 and not special_room_spawned) or (i == num_levels - 2 and not special_room_spawned):
+					room = SPECIAL_ROOMS[randi() % SPECIAL_ROOMS.size()].instantiate()
+					special_room_spawned = true
+				else:
+					room = INTERMEDIATE_ROOMS[randi() % INTERMEDIATE_ROOMS.size()].instantiate()
 			var previous_room_tilemap: TileMap = previous_room.get_node("TileMap")
 			var previous_room_door: StaticBody2D = previous_room.get_node("Doors/Door")
 			var exit_tile_pos: Vector2 = previous_room_tilemap.local_to_map(previous_room_door.position) + Vector2i.UP * 2
