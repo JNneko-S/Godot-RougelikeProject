@@ -49,11 +49,10 @@ func get_input() -> void: #入力の受付
 		elif Input.is_action_just_pressed("UI_throw") and current_weapon.get_index() != 0:
 			_drop_weapon()
 			
-	
 	current_weapon.get_input()
 
 func _switch_weapon(direction : int) -> void:
-	var prev_index: int = current_weapon.get_index()
+	var _prev_index: int = current_weapon.get_index()
 	var index : int = current_weapon.get_index()
 	if direction == UP: #方向が上ならindexを-1する
 		index -= 1
@@ -70,11 +69,11 @@ func _switch_weapon(direction : int) -> void:
 	SavedData.equipped_weapon_index = index
 	
 func pick_up_weapon(weapon : Weapon) -> void: ### 武器を拾う処理
-	SavedData.weapons.append(weapon.duplicate())
-	var prev_index : int = SavedData.equipped_weapon_index
-	var new_index : int = weapons.get_child_count()
-	SavedData.equipped_weapon_index = weapons.get_child_count()
 	if weapon.on_floor:
+		SavedData.weapons.append(weapon.duplicate())
+		var _prev_index : int = SavedData.equipped_weapon_index
+		var new_index : int = weapons.get_child_count()
+		SavedData.equipped_weapon_index = new_index
 		weapon.get_parent().call_deferred("remove_child",weapon) 
 		weapons.call_deferred("add_child", weapon)
 		weapon.set_deferred("owner", weapons)
@@ -82,7 +81,9 @@ func pick_up_weapon(weapon : Weapon) -> void: ### 武器を拾う処理
 		#call_deferredとset_deferredを使わないとエラーが出る(Godot3時点での話なので今はわからない)
 		
 		current_weapon.hide()
+		print("隠れる")
 		current_weapon.cancel_attack()
+		print("攻撃をキャンセル")
 		current_weapon = weapon
 		print("武器を獲得")
 		#現在の武器を隠し、最後に現在の武器を拾った武器に設定する。

@@ -467,6 +467,7 @@ zoom = Vector2(2, 2)
 [node name="AudioSEPlayer" type="AudioStreamPlayer" parent="." index="6"]
 stream = ExtResource("9_ncigy")
 pitch_scale = 1.1
+stream_paused = true
 
 [node name="DustPoisiton" type="Marker2D" parent="." index="7"]
 position = Vector2(0, 6)

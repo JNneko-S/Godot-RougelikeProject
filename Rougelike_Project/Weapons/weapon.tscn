@@ -52,6 +52,8 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
 [node name="AudioSEPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="ChargingSE" type="AudioStreamPlayer" parent="."]

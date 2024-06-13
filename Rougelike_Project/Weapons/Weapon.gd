@@ -4,6 +4,7 @@ extends Node2D
 class_name Weapon
 
 @export var on_floor : bool = false
+@export var id : int
 
 @onready var animation_player : AnimationPlayer = get_node("AnimationPlayer")
 @onready var ChargeParticle : GPUParticles2D = get_node("Node2D/Sprite/ChargeParticles")
