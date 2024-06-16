@@ -10,7 +10,7 @@ const ENEMY_SCENES : Dictionary = {
 }
 
 const ENEMY_SPAWN_WEIGHT : Dictionary = {
-	"FLYING_CREATURE" : 1000,
+	"FLYING_CREATURE" : 3,
 	"GOBLIN" : 3,
 	"Minotaur" : 1
 }
