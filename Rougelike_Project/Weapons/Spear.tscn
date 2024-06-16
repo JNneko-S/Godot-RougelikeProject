@@ -971,6 +971,7 @@ _data = {
 
 [node name="Spear" instance=ExtResource("1_s0fka")]
 on_floor = true
+Rarity = "Rare"
 
 [node name="Node2D" parent="." index="0"]
 rotation = 0.0

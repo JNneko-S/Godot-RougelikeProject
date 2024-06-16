@@ -2,7 +2,14 @@ extends Node2D
 
 
 const SPAWN_ROOMS: Array = [preload("res://Rooms/SpawnRoom0.tscn"),preload("res://Rooms/SpawnRoom1.tscn")]
-const INTERMEDIATE_ROOMS: Array = [preload("res://Rooms/Room0.tscn"),preload("res://Rooms/Room1.tscn"),preload("res://Rooms/Room2.tscn"),preload("res://Rooms/Room3.tscn"),preload("res://Rooms/Room4.tscn"),preload("res://Rooms/Room5.tscn")]
+const INTERMEDIATE_ROOMS: Array = [
+	preload("res://Rooms/Room0.tscn"),
+	preload("res://Rooms/Room1.tscn"),
+	preload("res://Rooms/Room2.tscn"),
+	preload("res://Rooms/Room3.tscn"),
+	preload("res://Rooms/Room4.tscn"),
+	preload("res://Rooms/Room5.tscn")
+]
 const SPECIAL_ROOMS: Array = [preload("res://Rooms/SpecialRoom0.tscn")]
 const END_ROOMS: Array = [preload("res://Rooms/EndRoom0.tscn")]
 

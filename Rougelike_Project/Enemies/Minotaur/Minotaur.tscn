@@ -1,7 +1,9 @@
-[gd_scene load_steps=62 format=3 uid="uid://ceum8wfs6scyg"]
+[gd_scene load_steps=64 format=3 uid="uid://ceum8wfs6scyg"]
 
 [ext_resource type="PackedScene" uid="uid://bwk6bh0chqfbe" path="res://Enemies/enemy.tscn" id="1_2cqtb"]
 [ext_resource type="Texture2D" uid="uid://d1rhpeyvfqrsy" path="res://Arts/enemies/Minotaur/Minotaur - Sprite Sheet.png" id="2_0u385"]
+[ext_resource type="Script" path="res://Enemies/Minotaur/Minotaur.gd" id="2_silr0"]
+[ext_resource type="Script" path="res://Enemies/Minotaur/MinotaurFSM.gd" id="3_3mr7p"]
 [ext_resource type="Script" path="res://Hitbox.gd" id="3_kkh4n"]
 [ext_resource type="Texture2D" uid="uid://bf45ljconl0h5" path="res://Arts/Free Smoke Fx Pixel 2/Free Smoke Fx  Pixel 07.png" id="3_ognoc"]
 [ext_resource type="AudioStream" uid="uid://d01u7qct01dba" path="res://Music/SE/10_Battle_SFX/77_flesh_02.wav" id="5_fdhbb"]
@@ -355,7 +357,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7nogc"]
-radius = 11.0
+radius = 16.0
 height = 74.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5lbip"]
@@ -506,7 +508,7 @@ tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [5]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
@@ -520,10 +522,34 @@ tracks/12/keys = {
 "update": 1,
 "values": [60]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath(".:disabled")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../Area2D/CollisionShape2D:disabled")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_gc8o2"]
 resource_name = "attack"
-length = 1.2
+length = 1.5
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -662,6 +688,42 @@ tracks/3/keys = {
 "args": [],
 "method": &"queue_free"
 }]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Hitbox/CollisionShape2D2:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Area2D/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_micly"]
@@ -845,27 +907,35 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k7hf5"]
-radius = 28.0
+radius = 18.0
 height = 78.0
 
 [node name="Minotaur" instance=ExtResource("1_2cqtb")]
-script = null
+collision_mask = 13
+script = ExtResource("2_silr0")
+player_in_area = false
+max_hp = 6
+hp = 6
+accerelation = 5
 
 [node name="FiniteStateMachine" parent="." index="0"]
-script = null
+script = ExtResource("3_3mr7p")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_oqibe")
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(-4, -6)
+position = Vector2(-3, 0)
+rotation = 1.57079
 
 [node name="Hitbox" type="Area2D" parent="." index="3"]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("3_kkh4n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(6, 11)
+position = Vector2(5, 7)
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_7nogc")
 disabled = true
@@ -880,18 +950,32 @@ debug_color = Color(0.643137, 0, 0.0941176, 0.419608)
 libraries = {
 "": SubResource("AnimationLibrary_2k37g")
 }
+autoplay = "move"
 
 [node name="PathTimer" parent="." index="5"]
-wait_time = 1.0
+wait_time = 0.1
+
+[node name="NavigationAgent2D" parent="." index="6"]
+path_desired_distance = 5.0
+target_desired_distance = 5.0
+path_max_distance = 200.0
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 30.0
+max_neighbors = 8
+time_horizon_agents = 0.5
+max_speed = 150.0
 
 [node name="AttackSE" type="AudioStreamPlayer" parent="." index="7"]
 stream = ExtResource("5_fdhbb")
 pitch_scale = 0.5
 
 [node name="Area2D" type="Area2D" parent="." index="8"]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(5, -1)
+position = Vector2(5, 7)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_k7hf5")
 debug_color = Color(0.654902, 0.513726, 0.188235, 0.419608)
@@ -901,3 +985,4 @@ wait_time = 6.0
 one_shot = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -5,7 +5,8 @@ const SPAWN_EXPLOSION_SCENE : PackedScene = preload("res://Enemies/spawn_explosi
 
 const ENEMY_SCENES : Dictionary = {
 	"FLYING_CREATURE" : preload("res://Enemies/Flying_creature.tscn"),
-	"GOBLIN" : preload("res://Enemies/Goblin/goblin.tscn")
+	"GOBLIN" : preload("res://Enemies/Goblin/goblin.tscn"),
+	"Minotaur" : preload("res://Enemies/Minotaur/Minotaur.tscn")
 }
 
 #敵の数
@@ -40,8 +41,11 @@ func _close_entrance() -> void: #出れないようにする処理
 func _spawn_enemies() -> void: #敵の出現の処理
 	for enemy_position in enemy_positions_container.get_children(): #enemy_positions_containerのすべての子ノードに対して反復処理をする(数える)
 		var enemy: CharacterBody2D
-		if randi() % 2 == 0:
+		var RNG : int = randi_range(0,2)
+		if RNG == 0:
 			enemy = ENEMY_SCENES.FLYING_CREATURE.instantiate()
+		elif RNG == 1:
+			enemy = ENEMY_SCENES.Minotaur.instantiate()
 		else:
 			enemy = ENEMY_SCENES.GOBLIN.instantiate()
 		enemy.position = enemy_position.position #また、敵の位置は子ノードの位置に準ずる
