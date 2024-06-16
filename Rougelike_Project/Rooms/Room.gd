@@ -4,13 +4,13 @@ class_name Room
 const SPAWN_EXPLOSION_SCENE : PackedScene = preload("res://Enemies/spawn_explosion.tscn")
 
 const ENEMY_SCENES : Dictionary = {
-	"FLYING_CREATURE" : preload("res://Enemies/FlyingCreature/FlyingCreature.tscn"),
+	"FLYING_CREATURE" : preload("res://Enemies/FlyingCreature/Flying_creature.tscn"),
 	"GOBLIN" : preload("res://Enemies/Goblin/goblin.tscn"),
 	"Minotaur" : preload("res://Enemies/Minotaur/Minotaur.tscn")
 }
 
 const ENEMY_SPAWN_WEIGHT : Dictionary = {
-	"FLYING_CREATURE" : 3,
+	"FLYING_CREATURE" : 5,
 	"GOBLIN" : 3,
 	"Minotaur" : 1
 }
