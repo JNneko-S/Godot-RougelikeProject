@@ -4,9 +4,15 @@ class_name Room
 const SPAWN_EXPLOSION_SCENE : PackedScene = preload("res://Enemies/spawn_explosion.tscn")
 
 const ENEMY_SCENES : Dictionary = {
-	"FLYING_CREATURE" : preload("res://Enemies/Flying_creature.tscn"),
+	"FLYING_CREATURE" : preload("res://Enemies/FlyingCreature/FlyingCreature.tscn"),
 	"GOBLIN" : preload("res://Enemies/Goblin/goblin.tscn"),
 	"Minotaur" : preload("res://Enemies/Minotaur/Minotaur.tscn")
+}
+
+const ENEMY_SPAWN_WEIGHT : Dictionary = {
+	"FLYING_CREATURE" : 3,
+	"GOBLIN" : 3,
+	"Minotaur" : 1
 }
 
 #敵の数
@@ -38,16 +44,28 @@ func _close_entrance() -> void: #出れないようにする処理
 		tilemap.set_cell(0, tilemap.local_to_map(entry_position.position), 0, Vector2i(2,6)) #配置するタイルを指定する
 		tilemap.set_cell(0, tilemap.local_to_map(entry_position.position) + Vector2i.DOWN, 2, Vector2i.ZERO) #どこに配置をするかを決める
 
+func _calculate_total_weight() -> int:
+	var count: int = 0
+	for enemy_key in ENEMY_SPAWN_WEIGHT:
+		count += ENEMY_SPAWN_WEIGHT[enemy_key]
+	return count
+	
+func _get_enemy_type(rng_value: int) -> String:
+	var current_maximum: int = 0
+	for enemy_key in ENEMY_SCENES:
+		var enemy_weight: int = ENEMY_SPAWN_WEIGHT[enemy_key]
+		current_maximum += enemy_weight
+		if rng_value < current_maximum:
+			return enemy_key
+	return ""
+
 func _spawn_enemies() -> void: #敵の出現の処理
 	for enemy_position in enemy_positions_container.get_children(): #enemy_positions_containerのすべての子ノードに対して反復処理をする(数える)
 		var enemy: CharacterBody2D
-		var RNG : int = randi_range(0,2)
-		if RNG == 0:
-			enemy = ENEMY_SCENES.FLYING_CREATURE.instantiate()
-		elif RNG == 1:
-			enemy = ENEMY_SCENES.Minotaur.instantiate()
-		else:
-			enemy = ENEMY_SCENES.GOBLIN.instantiate()
+		var total_weight = _calculate_total_weight()
+		var rng_value : int = randi_range(0, total_weight - 1)
+		var rng_enemy_name: String = _get_enemy_type(rng_value)
+		enemy = ENEMY_SCENES[rng_enemy_name].instantiate()
 		enemy.position = enemy_position.position #また、敵の位置は子ノードの位置に準ずる
 		self.call_deferred("add_child", enemy)
 		
