@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://ct30e0c74lgph"]
+
+[ext_resource type="Script" path="res://items/health_positon.gd" id="1_sqv6e"]
+[ext_resource type="Texture2D" uid="uid://b3in0vdq7bctv" path="res://Arts/props_itens/potion_red.png" id="2_bf54n"]
+[ext_resource type="AudioStream" uid="uid://bnpjvq4s7n4ae" path="res://Music/SE/8_Buffs_Heals_SFX/02_Heal_02.wav" id="3_mtn21"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jkgwf"]
+radius = 6.0
+
+[node name="HealthPositon" type="Area2D"]
+texture_filter = 1
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_sqv6e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_bf54n")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(-0.4375, -0.75)
+shape = SubResource("CircleShape2D_jkgwf")
+
+[node name="HealSE" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_mtn21")
+volume_db = -9.0
+pitch_scale = 1.1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

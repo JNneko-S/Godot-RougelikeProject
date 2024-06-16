@@ -13,5 +13,5 @@ func _ready():
 	Input.set_custom_mouse_cursor(arrow)
 
 func playing_music() -> void:
-	if Player.is_played("dead"):
+	if Player.is_play("dead"):
 		musicplayer.stop

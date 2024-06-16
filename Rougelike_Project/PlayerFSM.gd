@@ -11,7 +11,6 @@ func _ready() -> void:
 	set_state(states.idle)
 	
 
-
 func _state_logic(_delta : float) -> void:
 	if state == states.idle or state == states.move:
 		parent.get_input()

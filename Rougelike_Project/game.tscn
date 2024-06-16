@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://cbic8wjvjppqv"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_bm5dk"]
-[ext_resource type="PackedScene" uid="uid://bka0tlem72mwh" path="res://Player/player.tscn" id="1_cgjrj"]
+[ext_resource type="PackedScene" uid="uid://bka0tlem72mwh" path="res://Character/Player/player.tscn" id="1_cgjrj"]
 [ext_resource type="Script" path="res://UI.gd" id="2_ec5dv"]
 [ext_resource type="Texture2D" uid="uid://b5is07hmjmxfu" path="res://Arts/ui (new)/progress bar.png" id="3_qs8t1"]
 [ext_resource type="Texture2D" uid="uid://bilwlm4ef4gfx" path="res://Arts/ui (new)/health_ui.png" id="4_176mf"]
 [ext_resource type="Script" path="res://Rooms.gd" id="5_q6lld"]
-[ext_resource type="AudioStream" uid="uid://dkxm5xh43q0e3" path="res://Music/Three Red Hearts - Penultimate.ogg" id="7_8xvyy"]
+[ext_resource type="AudioStream" uid="uid://kd0d60xu7m7m" path="res://Music/Basement Theme - Diptera Sonata - The Binding of Isaac_ Rebirth OST Extended.mp3" id="7_5iq0t"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_sthqg"]
 
@@ -40,14 +40,15 @@ tint_progress = Color(1, 0, 0, 1)
 
 [node name="Room" type="Node2D" parent="."]
 script = ExtResource("5_q6lld")
+num_levels = 7
 
 [node name="Player" parent="." instance=ExtResource("1_cgjrj")]
 y_sort_enabled = true
 position = Vector2(192, 72)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_8xvyy")
-volume_db = -15.0
+stream = ExtResource("7_5iq0t")
+volume_db = -12.0
 autoplay = true
 
 [connection signal="hp_changed" from="Player" to="UI" method="_on_player_hp_changed"]

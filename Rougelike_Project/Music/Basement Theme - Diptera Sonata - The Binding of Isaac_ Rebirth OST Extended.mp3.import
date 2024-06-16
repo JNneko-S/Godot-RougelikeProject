@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://kd0d60xu7m7m"
+path="res://.godot/imported/Basement Theme - Diptera Sonata - The Binding of Isaac_ Rebirth OST Extended.mp3-86be5e7aeedbc43c9d458d2d60ebf2bd.mp3str"
+
+[deps]
+
+source_file="res://Music/Basement Theme - Diptera Sonata - The Binding of Isaac_ Rebirth OST Extended.mp3"
+dest_files=["res://.godot/imported/Basement Theme - Diptera Sonata - The Binding of Isaac_ Rebirth OST Extended.mp3-86be5e7aeedbc43c9d458d2d60ebf2bd.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://ckn6vwsgrs3px"]
+
+[ext_resource type="PackedScene" uid="uid://bogf1uvmmclgu" path="res://Weapons/weapon.tscn" id="1_yp5ij"]
+[ext_resource type="Texture2D" uid="uid://c6a0ab4aan6mf" path="res://Arts/Shikashi's Fantasy Icons Pack v2/#1 - Transparent Icons.png" id="2_a7bkb"]
+[ext_resource type="Shader" path="res://Character/Player/White.gdshader" id="2_d362t"]
+[ext_resource type="Texture2D" uid="uid://cmdws8oiuhxy2" path="res://effects (new)/slash_effect_anim_spritesheet.png" id="3_vbd7l"]
+[ext_resource type="AudioStream" uid="uid://dpqhr2ul0yc4o" path="res://Music/SE/10_Battle_SFX/35_Miss_Evade_02.wav" id="5_l31sc"]
+[ext_resource type="AnimationLibrary" uid="uid://bec8t4df15ua7" path="res://Animation_res/Sword.res" id="5_wxf1i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q6ogq"]
+resource_local_to_scene = true
+shader = ExtResource("2_d362t")
+shader_parameter/active = false
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f4exx"]
+radius = 5.62
+height = 34.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dw11i"]
+radius = 5.0
+height = 28.0
+
+[node name="Weapon" instance=ExtResource("1_yp5ij")]
+id = 1
+
+[node name="SlashSprite" type="Sprite2D" parent="." index="0"]
+visible = false
+position = Vector2(27, 3)
+scale = Vector2(1.293, 2.005)
+texture = ExtResource("3_vbd7l")
+hframes = 3
+
+[node name="Sprite" parent="Node2D" index="0"]
+material = SubResource("ShaderMaterial_q6ogq")
+position = Vector2(9, -3)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_a7bkb")
+hframes = 16
+vframes = 27
+frame = 82
+
+[node name="CollisionShape2D" parent="Node2D/Sprite/Hitbox" index="0"]
+position = Vector2(4.24263, -4.24262)
+shape = SubResource("CapsuleShape2D_f4exx")
+
+[node name="CollisionShape2D" parent="PlayerDetector" index="0"]
+position = Vector2(-8, -9)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_dw11i")
+disabled = true
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": ExtResource("5_wxf1i")
+}
+
+[node name="AudioSEPlayer" parent="." index="4"]
+stream = ExtResource("5_l31sc")
