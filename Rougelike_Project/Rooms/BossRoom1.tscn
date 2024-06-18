@@ -1,12 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://2rr3boex0eum"]
+[gd_scene load_steps=7 format=3 uid="uid://2rr3boex0eum"]
 
 [ext_resource type="PackedScene" uid="uid://wlxa345n3fp8" path="res://Rooms/Room.tscn" id="1_u8gm6"]
 [ext_resource type="Script" path="res://Rooms/BossRoom1.gd" id="2_argp8"]
 [ext_resource type="PackedScene" uid="uid://by1eeq8uuog5e" path="res://door.tscn" id="2_pg43n"]
 [ext_resource type="PackedScene" uid="uid://gc2ngnexvl7s" path="res://Rooms/Spike/spikes.tscn" id="3_fjm72"]
 [ext_resource type="AudioStream" uid="uid://htj4iihuoeb3" path="res://Music/jackolantern-2024.mp3" id="5_0b3um"]
-[ext_resource type="PackedScene" uid="uid://bka0tlem72mwh" path="res://Character/Player/player.tscn" id="6_08j4a"]
-[ext_resource type="PackedScene" uid="uid://bp0gdy7qt4cc0" path="res://Enemies/BOSS/Slime/slime_boss.tscn" id="7_il51e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6q1it"]
 size = Vector2(32, 16)
@@ -316,10 +314,5 @@ shape = SubResource("RectangleShape2D_6q1it")
 
 [node name="BossAudioPlayer" type="AudioStreamPlayer" parent="." index="8"]
 stream = ExtResource("5_0b3um")
-
-[node name="Player" parent="." index="9" instance=ExtResource("6_08j4a")]
-
-[node name="SlimeBoss" parent="." index="10" instance=ExtResource("7_il51e")]
-position = Vector2(288, 111)
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
