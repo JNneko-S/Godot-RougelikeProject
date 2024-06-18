@@ -103,7 +103,6 @@ tint_progress = Color(1, 0, 0, 1)
 
 [node name="Room" type="Node2D" parent="."]
 script = ExtResource("5_q6lld")
-num_levels = 7
 
 [node name="Player" parent="." instance=ExtResource("1_cgjrj")]
 y_sort_enabled = true

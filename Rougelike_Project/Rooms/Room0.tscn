@@ -59,7 +59,7 @@ position = Vector2(159, 63)
 [node name="Marker2D4" type="Marker2D" parent="EnemyPositions" index="3"]
 position = Vector2(368, 68)
 
-[node name="PlayerDetector" parent="." index="7"]
+[node name="PlayerDetector" parent="." index="8"]
 position = Vector2(0, -16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]

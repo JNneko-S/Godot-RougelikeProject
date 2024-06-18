@@ -9,7 +9,7 @@ const INTERMEDIATE_ROOMS: Array = [
 	preload("res://Rooms/Room4.tscn"),
 	preload("res://Rooms/Room5.tscn")
 ]
-const SLIME_BOSS_SCENE : PackedScene = preload("res://Enemies/BOSS/Slime/slime_boss.tscn")
+const SLIME_BOSS_SCENE : PackedScene = preload("res://Rooms/BossRoom1.tscn")
 const SPECIAL_ROOMS: Array = [preload("res://Rooms/SpecialRoom0.tscn")]
 const END_ROOMS: Array = [preload("res://Rooms/EndRoom0.tscn")]
 

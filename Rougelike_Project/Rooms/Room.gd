@@ -8,15 +8,13 @@ const SPAWN_EXPLOSION_SCENE : PackedScene = preload("res://Enemies/spawn_explosi
 const ENEMY_SCENES : Dictionary = {
 	"FLYING_CREATURE" : preload("res://Enemies/FlyingCreature/Flying_creature.tscn"),
 	"GOBLIN" : preload("res://Enemies/Goblin/goblin.tscn"),
-	"Minotaur" : preload("res://Enemies/Minotaur/Minotaur.tscn"),
-	"SlimeBoss" : preload("res://Enemies/BOSS/Slime/slime_boss.tscn")
+	"Minotaur" : preload("res://Enemies/Minotaur/Minotaur.tscn")
 }
 
 const ENEMY_SPAWN_WEIGHT : Dictionary = {
 	"FLYING_CREATURE" : 8,
 	"GOBLIN" : 3,
-	"Minotaur" : 1,
-	"SlimeBoss" : 0
+	"Minotaur" : 1
 }
 
 #敵の数
@@ -69,11 +67,7 @@ func _spawn_enemies() -> void: #敵の出現の処理
 		var total_weight = _calculate_total_weight()
 		var rng_value : int = randi_range(0, total_weight - 1)
 		var rng_enemy_name: String = _get_enemy_type(rng_value)
-		if boss_room:
-			enemy = ENEMY_SCENES.SlimeBoss.instantiate()
-			num_enemies = 15
-		else:
-			enemy = ENEMY_SCENES[rng_enemy_name].instantiate()
+		enemy = ENEMY_SCENES[rng_enemy_name].instantiate()
 		enemy.position = enemy_position.position #また、敵の位置は子ノードの位置に準ずる
 		self.call_deferred("add_child", enemy)
 		

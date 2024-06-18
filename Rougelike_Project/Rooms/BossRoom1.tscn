@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://2rr3boex0eum"]
 
 [ext_resource type="PackedScene" uid="uid://wlxa345n3fp8" path="res://Rooms/Room.tscn" id="1_u8gm6"]
-[ext_resource type="Script" path="res://Rooms/BossRoom1.gd" id="2_argp8"]
+[ext_resource type="Script" path="res://Rooms/BossRoom.gd" id="2_esftu"]
 [ext_resource type="PackedScene" uid="uid://by1eeq8uuog5e" path="res://door.tscn" id="2_pg43n"]
 [ext_resource type="PackedScene" uid="uid://gc2ngnexvl7s" path="res://Rooms/Spike/spikes.tscn" id="3_fjm72"]
 [ext_resource type="AudioStream" uid="uid://htj4iihuoeb3" path="res://Music/jackolantern-2024.mp3" id="5_0b3um"]
@@ -10,7 +10,7 @@
 size = Vector2(32, 16)
 
 [node name="BossRoom" instance=ExtResource("1_u8gm6")]
-script = ExtResource("2_argp8")
+script = ExtResource("2_esftu")
 
 [node name="TileMap" parent="." index="0"]
 layer_0/name = "Floor"
@@ -35,7 +35,7 @@ position = Vector2(295, 423)
 [node name="Door" parent="Doors" index="0" instance=ExtResource("2_pg43n")]
 position = Vector2(288, 32)
 
-[node name="Marker2D" type="Marker2D" parent="EnemyPositions" index="0"]
+[node name="Marker2D" type="Marker2D" parent="BossPositions" index="0"]
 position = Vector2(287, 112)
 
 [node name="Spikes" parent="Trap" index="0" instance=ExtResource("3_fjm72")]
@@ -308,11 +308,12 @@ position = Vector2(487, 215)
 [node name="Spikes90" parent="Trap" index="89" instance=ExtResource("3_fjm72")]
 position = Vector2(471, 200)
 
+[node name="BossAudioPlayer" type="AudioStreamPlayer" parent="." index="8"]
+stream = ExtResource("5_0b3um")
+volume_db = -10.0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2(287, 394)
 shape = SubResource("RectangleShape2D_6q1it")
-
-[node name="BossAudioPlayer" type="AudioStreamPlayer" parent="." index="8"]
-stream = ExtResource("5_0b3um")
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

@@ -2,9 +2,6 @@ extends FiniteStateMachine
 
 var can_jump: bool = false
 
-@onready var path_timer : Timer = parent.get_node("PathTimer")
-@onready var jump_timer : Timer = parent.get_node("JumpTimer")
-
 func _init():
 	_add_state("idle")
 	_add_state("jump")
@@ -33,6 +30,9 @@ func _get_transition() -> int:
 	return -1
 
 func _exit_state(state_exited : int) -> void:
+	var path_timer : Timer = parent.get_node("PathTimer")
+	var jump_timer : Timer = parent.get_node("JumpTimer")
+	
 	if state_exited == states.jump:
 		can_jump = false
 		path_timer.start()
@@ -41,3 +41,14 @@ func _exit_state(state_exited : int) -> void:
 func _on_jump_timer_timeout() -> void:
 	can_jump = true
 	
+
+func _enter_state(_previous_state: int, new_state: int) -> void:
+	match new_state:
+		states.idle:
+			animation_player.play("idle")
+		states.jump:
+			animation_player.play("jump")
+		states.hurt:
+			animation_player.play("hurt")
+		states.dead:
+			animation_player.play("dead")
