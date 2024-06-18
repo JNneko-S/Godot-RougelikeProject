@@ -1,6 +1,5 @@
 extends Node2D
 
-
 const SPAWN_ROOMS: Array = [preload("res://Rooms/SpawnRoom0.tscn"),preload("res://Rooms/SpawnRoom1.tscn")]
 const INTERMEDIATE_ROOMS: Array = [
 	preload("res://Rooms/Room0.tscn"),
@@ -10,6 +9,7 @@ const INTERMEDIATE_ROOMS: Array = [
 	preload("res://Rooms/Room4.tscn"),
 	preload("res://Rooms/Room5.tscn")
 ]
+const SLIME_BOSS_SCENE : PackedScene = preload("res://Enemies/BOSS/Slime/slime_boss.tscn")
 const SPECIAL_ROOMS: Array = [preload("res://Rooms/SpecialRoom0.tscn")]
 const END_ROOMS: Array = [preload("res://Rooms/EndRoom0.tscn")]
 
@@ -21,6 +21,9 @@ const TILE_SIZE : int = 16
 @onready var player : CharacterBody2D = get_parent().get_node("Player")
 
 func _ready() -> void:
+	SavedData.num_floor += 1
+	if SavedData.num_floor == 3:
+		num_levels = 3
 	_spawn_rooms()
 	#ready関数で最初に部屋を生成する
 
@@ -38,11 +41,14 @@ func _spawn_rooms() -> void:
 			if i == num_levels - 1:
 				room = END_ROOMS[randi() % END_ROOMS.size()].instantiate()
 			else: #1よりも上だと敵スポーン部屋が生成する
-				if ((randi() % 3 == 0 and not special_room_spawned) or (i == num_levels - 2 and not special_room_spawned)):
-					room = SPECIAL_ROOMS[randi() % SPECIAL_ROOMS.size()].instantiate()
-					special_room_spawned = true
+				if SavedData.num_floor == 3:
+					room = SLIME_BOSS_SCENE.instantiate()
 				else:
-					room = INTERMEDIATE_ROOMS[randi() % INTERMEDIATE_ROOMS.size()].instantiate()
+					if ((randi() % 3 == 0 and not special_room_spawned) or (i == num_levels - 2 and not special_room_spawned)):
+						room = SPECIAL_ROOMS[randi() % SPECIAL_ROOMS.size()].instantiate()
+						special_room_spawned = true
+					else:
+						room = INTERMEDIATE_ROOMS[randi() % INTERMEDIATE_ROOMS.size()].instantiate()
 			var previous_room_tilemap: TileMap = previous_room.get_node("TileMap")
 			var previous_room_door: StaticBody2D = previous_room.get_node("Doors/Door")
 			var exit_tile_pos: Vector2 = previous_room_tilemap.local_to_map(previous_room_door.position) + Vector2i.UP * 2

@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var musicplayer = get_node("AudioStreamPlayer")
-@onready var Player = get_node("Player/AnimationPlayer")
+@onready var Player : AudioStreamPlayer = get_node("Player/AnimationPlayer")
 
 var arrow = load("res://Arts/ui (new)/crosshair_3.png")
 #マウスカーソルの画像をロード

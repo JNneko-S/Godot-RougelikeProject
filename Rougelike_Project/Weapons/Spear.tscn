@@ -1,19 +1,37 @@
 [gd_scene load_steps=30 format=3 uid="uid://dfmd10roxgncw"]
 
 [ext_resource type="PackedScene" uid="uid://bogf1uvmmclgu" path="res://Weapons/weapon.tscn" id="1_s0fka"]
-[ext_resource type="Shader" path="res://Character/Player/White.gdshader" id="2_7u74r"]
 [ext_resource type="Texture2D" uid="uid://cpaq6ifg841gy" path="res://Arts/Weapons Asset 16x16/070.png" id="3_m75rc"]
+[ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="4_3x7k0"]
 [ext_resource type="Texture2D" uid="uid://cyb0ihk7puq4h" path="res://Arts/Free Smoke Fx Pixel 2/Free Smoke Fx  Pixel 06.png" id="4_anh0v"]
 [ext_resource type="AudioStream" uid="uid://dirq5m3gyfe0d" path="res://Music/SE/10_Battle_SFX/51_Flee_02.wav" id="4_bhai6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2hkdo"]
-shader = ExtResource("2_7u74r")
-shader_parameter/active = false
+shader = ExtResource("4_3x7k0")
+shader_parameter/top = true
+shader_parameter/left = true
+shader_parameter/right = true
+shader_parameter/bottom = true
+shader_parameter/topleft = false
+shader_parameter/topright = null
+shader_parameter/bottomleft = null
+shader_parameter/bottomright = null
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/inside = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2qeq4"]
 resource_local_to_scene = true
-shader = ExtResource("2_7u74r")
-shader_parameter/active = false
+shader = ExtResource("4_3x7k0")
+shader_parameter/top = true
+shader_parameter/left = true
+shader_parameter/right = true
+shader_parameter/bottom = true
+shader_parameter/topleft = null
+shader_parameter/topright = null
+shader_parameter/bottomleft = false
+shader_parameter/bottomright = false
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/inside = false
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tskpu"]
 radius = 4.1
@@ -386,6 +404,30 @@ tracks/21/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Node2D/Sprite:self_modulate")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Node2D/Sprite2:self_modulate")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_b55yt"]
 resource_local_to_scene = true
@@ -721,6 +763,18 @@ tracks/9/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Node2D/Sprite:self_modulate")
+tracks/10/interp = 0
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(100, 100, 100, 1), Color(1, 1, 1, 1), Color(100, 100, 100, 1), Color(1, 1, 1, 1), Color(100, 100, 100, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_25bcu"]
 resource_name = "preview"
@@ -958,6 +1012,30 @@ tracks/15/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Node2D/Sprite:self_modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 1.25, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(100, 100, 100, 1), Color(100, 100, 100, 1), Color(1, 1, 1, 1)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Node2D/Sprite2:self_modulate")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.2, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(100, 100, 100, 1), Color(100, 100, 100, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w4e42"]

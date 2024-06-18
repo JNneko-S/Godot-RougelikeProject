@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbic8wjvjppqv"]
+[gd_scene load_steps=13 format=3 uid="uid://cbic8wjvjppqv"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_bm5dk"]
 [ext_resource type="PackedScene" uid="uid://bka0tlem72mwh" path="res://Character/Player/player.tscn" id="1_cgjrj"]
@@ -7,8 +7,71 @@
 [ext_resource type="Texture2D" uid="uid://bilwlm4ef4gfx" path="res://Arts/ui (new)/health_ui.png" id="4_176mf"]
 [ext_resource type="Script" path="res://Rooms.gd" id="5_q6lld"]
 [ext_resource type="AudioStream" uid="uid://kd0d60xu7m7m" path="res://Music/Basement Theme - Diptera Sonata - The Binding of Isaac_ Rebirth OST Extended.mp3" id="7_5iq0t"]
+[ext_resource type="Texture2D" uid="uid://c3vf62p0qowbh" path="res://Arts/floor1.png" id="7_6dgoo"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_sthqg"]
+size = Vector2(10, 10)
+
+[sub_resource type="Animation" id="Animation_ghqco"]
+resource_name = "Floor"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Camera2D/TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_6dgoo")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player/Camera2D/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 2.5, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dssi5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Camera2D/TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_6dgoo")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player/Camera2D/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5v88g"]
+_data = {
+"Floor": SubResource("Animation_ghqco"),
+"RESET": SubResource("Animation_dssi5")
+}
 
 [node name="Game" type="Node2D"]
 texture_filter = 1
@@ -18,7 +81,7 @@ script = ExtResource("1_bm5dk")
 modulate = Color(0, 0, 0, 1)
 z_index = -1
 texture_filter = 1
-position = Vector2(184.5, 55.0002)
+position = Vector2(152, 32)
 scale = Vector2(4827, 5024)
 mesh = SubResource("QuadMesh_sthqg")
 
@@ -46,10 +109,37 @@ num_levels = 7
 y_sort_enabled = true
 position = Vector2(192, 72)
 
+[node name="TextureRect" type="TextureRect" parent="Player/Camera2D" index="0"]
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -64.0
+offset_right = 48.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_6dgoo")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_5iq0t")
 volume_db = -12.0
 autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5v88g")
+}
+autoplay = "Floor"
 
 [connection signal="hp_changed" from="Player" to="UI" method="_on_player_hp_changed"]
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bogf1uvmmclgu" path="res://Weapons/weapon.tscn" id="1_w3vhp"]
 [ext_resource type="Texture2D" uid="uid://n60d83uwav8w" path="res://Arts/Weapons Asset 16x16/063.png" id="2_cvwto"]
-[ext_resource type="Shader" path="res://Character/Player/White.gdshader" id="2_k34no"]
+[ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="2_p64pn"]
 [ext_resource type="Texture2D" uid="uid://bcoc2fcfal2l5" path="res://Arts/Free Smoke Fx Pixel 2/Free Smoke Fx  Pixel 05.png" id="4_mvtrv"]
 [ext_resource type="Texture2D" uid="uid://bf45ljconl0h5" path="res://Arts/Free Smoke Fx Pixel 2/Free Smoke Fx  Pixel 07.png" id="4_nor5n"]
 [ext_resource type="AudioStream" uid="uid://c6oh3fpxby412" path="res://Music/SE/10_Battle_SFX/15_Impact_flesh_02.wav" id="5_ht3gp"]
@@ -10,8 +10,17 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_71mxr"]
 resource_local_to_scene = true
-shader = ExtResource("2_k34no")
-shader_parameter/active = false
+shader = ExtResource("2_p64pn")
+shader_parameter/top = true
+shader_parameter/left = true
+shader_parameter/right = true
+shader_parameter/bottom = true
+shader_parameter/topleft = null
+shader_parameter/topright = null
+shader_parameter/bottomleft = null
+shader_parameter/bottomright = null
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/inside = false
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_87qgy"]
 radius = 4.98809

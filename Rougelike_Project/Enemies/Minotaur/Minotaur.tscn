@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://ceum8wfs6scyg"]
+[gd_scene load_steps=66 format=3 uid="uid://ceum8wfs6scyg"]
 
 [ext_resource type="PackedScene" uid="uid://bwk6bh0chqfbe" path="res://Enemies/enemy.tscn" id="1_2cqtb"]
 [ext_resource type="Texture2D" uid="uid://d1rhpeyvfqrsy" path="res://Arts/enemies/Minotaur/Minotaur - Sprite Sheet.png" id="2_0u385"]
@@ -6,7 +6,21 @@
 [ext_resource type="Script" path="res://Enemies/Minotaur/MinotaurFSM.gd" id="3_3mr7p"]
 [ext_resource type="Script" path="res://Hitbox.gd" id="3_kkh4n"]
 [ext_resource type="Texture2D" uid="uid://bf45ljconl0h5" path="res://Arts/Free Smoke Fx Pixel 2/Free Smoke Fx  Pixel 07.png" id="3_ognoc"]
+[ext_resource type="Shader" path="res://Shader/Outline.gdshader" id="4_j4w76"]
 [ext_resource type="AudioStream" uid="uid://d01u7qct01dba" path="res://Music/SE/10_Battle_SFX/77_flesh_02.wav" id="5_fdhbb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_haa0v"]
+shader = ExtResource("4_j4w76")
+shader_parameter/top = true
+shader_parameter/left = true
+shader_parameter/right = true
+shader_parameter/bottom = true
+shader_parameter/topleft = false
+shader_parameter/topright = false
+shader_parameter/bottomleft = false
+shader_parameter/bottomright = null
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/inside = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_328ac"]
 atlas = ExtResource("2_0u385")
@@ -546,6 +560,54 @@ tracks/14/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../AnimatedSprite2D:material:shader_parameter/top")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../AnimatedSprite2D:material:shader_parameter/left")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("../AnimatedSprite2D:material:shader_parameter/right")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("../AnimatedSprite2D:material:shader_parameter/bottom")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_gc8o2"]
 resource_name = "attack"
@@ -724,6 +786,54 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../AnimatedSprite2D:material:shader_parameter/top")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../AnimatedSprite2D:material:shader_parameter/left")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../AnimatedSprite2D:material:shader_parameter/right")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../AnimatedSprite2D:material:shader_parameter/bottom")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, false]
 }
 
 [sub_resource type="Animation" id="Animation_micly"]
@@ -923,11 +1033,13 @@ script = ExtResource("3_3mr7p")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 texture_filter = 1
+material = SubResource("ShaderMaterial_haa0v")
+scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_oqibe")
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(-3, 0)
-rotation = 1.57079
+rotation = 3.14159
 
 [node name="Hitbox" type="Area2D" parent="." index="3"]
 collision_layer = 0
@@ -961,8 +1073,7 @@ target_desired_distance = 5.0
 path_max_distance = 200.0
 path_postprocessing = 1
 avoidance_enabled = true
-radius = 30.0
-max_neighbors = 8
+radius = 100.0
 time_horizon_agents = 0.5
 max_speed = 150.0
 

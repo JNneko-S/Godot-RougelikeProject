@@ -16,7 +16,7 @@ func _init() -> void:
 
 func _ready():
 	assert(collision_shape != null)
-	timer.wait_time	 = 1
+	timer.wait_time = 2.5
 	add_child(timer)
 
 func _on_body_entered(body : Node2D) -> void:
