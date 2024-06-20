@@ -84,10 +84,6 @@ position = Vector2(64, 63)
 [node name="Player" parent="." index="7" instance=ExtResource("3_3np8y")]
 position = Vector2(109, 166)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
-position = Vector2(55, 135.5)
-shape = SubResource("RectangleShape2D_16frk")
-
 [node name="Weapon" parent="." index="9" instance=ExtResource("5_yx3os")]
 position = Vector2(233, 106)
 on_floor = true
@@ -110,3 +106,7 @@ position = Vector2(155, 93)
 
 [node name="Minotaur" parent="." index="15" instance=ExtResource("7_or4r3")]
 position = Vector2(33, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
+position = Vector2(55, 135.5)
+shape = SubResource("RectangleShape2D_16frk")

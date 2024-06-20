@@ -2,6 +2,12 @@
 
 extends Enemy
 
+func _process(_delta : float) -> void:
+	if player.global_position.y > global_position.y:
+		z_index = 0
+	else:
+		z_index = 1
+
 func duplicate_slime() -> void:
 	if scale > Vector2(1, 1):
 		var impulse_direction : Vector2 = Vector2.RIGHT.rotated(randi_range(0, 2*PI))

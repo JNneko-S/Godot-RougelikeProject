@@ -43,10 +43,17 @@ func _on_jump_timer_timeout() -> void:
 	
 
 func _enter_state(_previous_state: int, new_state: int) -> void:
+	
+	var hitbox : Area2D = $"../Hitbox"
+	var path_timer : Timer = parent.get_node("PathTimer")
+	
 	match new_state:
 		states.idle:
 			animation_player.play("idle")
 		states.jump:
+			path_timer.stop()
+			if is_instance_valid(parent.player):
+				hitbox.knockback_direction = (parent.global_position - parent.player.position).normalized()
 			animation_player.play("jump")
 		states.hurt:
 			animation_player.play("hurt")

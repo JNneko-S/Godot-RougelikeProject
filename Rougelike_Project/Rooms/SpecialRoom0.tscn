@@ -28,12 +28,12 @@ position = Vector2(248, 375)
 [node name="Door" parent="Doors" index="0" instance=ExtResource("2_60gkd")]
 position = Vector2(256, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
-position = Vector2(240, 61)
-shape = SubResource("RectangleShape2D_4ww4e")
-
 [node name="RoomWithWeapon" parent="." index="8" instance=ExtResource("3_l6mjf")]
 position = Vector2(304, 112)
 
 [node name="Room" parent="." index="9" instance=ExtResource("4_k1l01")]
 position = Vector2(0, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
+position = Vector2(240, 61)
+shape = SubResource("RectangleShape2D_4ww4e")

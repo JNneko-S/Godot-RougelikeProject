@@ -17,6 +17,11 @@ func _on_player_detector_body_entered(body):
 	BG_player.stop()
 	Boss_player.playing = true
 
+func stoped_music():
+	if num_enemies == 0:
+		Boss_player.playing = false
+		BG_player.playing = true
+
 func _spawn_enemies() -> void:
 	for boss_positions in Boss_Positions_contrainer.get_children():
 		var enemy: CharacterBody2D

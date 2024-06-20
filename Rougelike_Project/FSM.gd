@@ -5,7 +5,7 @@ var states: Dictionary = {} #状態名（str）をキーにして、それに対
 var previous_state: int = -1 #前の状態
 var state: int = -1: set = set_state #現在の状態
 
-@onready var parent: Character = get_parent() #Characterクラスの親ノード
+@onready var parent: CharacterBody2D = get_parent() #Characterクラスの親ノード
 @onready var animation_player: AnimationPlayer = parent.get_node("AnimationPlayer") #親ノード内のアニメーションプレイヤー
 
 func _physics_process(delta: float) -> void:

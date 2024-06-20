@@ -462,7 +462,7 @@ visible = false
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
 ignore_rotation = false
-zoom = Vector2(2, 2)
+zoom = Vector2(1.75, 1.75)
 
 [node name="AudioSEPlayer" type="AudioStreamPlayer" parent="." index="6"]
 stream = ExtResource("9_ncigy")
