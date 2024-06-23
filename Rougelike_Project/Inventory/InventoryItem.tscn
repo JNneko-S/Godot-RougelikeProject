@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://eq2tu6tl4l4d"]
+
+[ext_resource type="Script" path="res://Inventory/InventoryItem.gd" id="2_t0i5a"]
+
+[node name="InventoryItem" type="TextureRect"]
+texture_filter = 1
+custom_minimum_size = Vector2(16, 16)
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.4, 1.4)
+script = ExtResource("2_t0i5a")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.858824, 0.745098, 0, 1)
+border_width = 2.0
+editor_only = false

@@ -99,6 +99,29 @@ texture_over = ExtResource("4_176mf")
 texture_progress = ExtResource("3_qs8t1")
 tint_progress = Color(1, 0, 0, 1)
 
+[node name="PanelContainer" type="PanelContainer" parent="UI"]
+texture_filter = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 4.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Inventory" type="HBoxContainer" parent="UI/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
 [node name="Rooms" type="Node2D" parent="."]
 
 [node name="Room" type="Node2D" parent="."]
@@ -141,5 +164,8 @@ libraries = {
 autoplay = "Floor"
 
 [connection signal="hp_changed" from="Player" to="UI" method="_on_player_hp_changed"]
+[connection signal="weapon_droped" from="Player" to="UI" method="_on_player_weapon_droped"]
+[connection signal="weapon_picked_up" from="Player" to="UI" method="_on_player_weapon_picked_up"]
+[connection signal="weapon_switched" from="Player" to="UI" method="_on_player_weapon_switched"]
 
 [editable path="Player"]

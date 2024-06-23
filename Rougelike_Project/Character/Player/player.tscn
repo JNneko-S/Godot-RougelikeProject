@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bwbd181appaw" path="res://Arts/heroes/knight/knight_run_spritesheet.png" id="3_icjq8"]
 [ext_resource type="Script" path="res://PlayerFSM.gd" id="3_pgk80"]
 [ext_resource type="Texture2D" uid="uid://vkg5enm68tud" path="res://effects (new)/enemy_afterdead_explosion_anim_spritesheet.png" id="4_50x7b"]
-[ext_resource type="PackedScene" uid="uid://ckn6vwsgrs3px" path="res://Weapons/sword.tscn" id="7_st21i"]
+[ext_resource type="PackedScene" uid="uid://cbodq3xp55rpw" path="res://Weapons/Hammer.tscn" id="7_jtq8y"]
 [ext_resource type="AudioStream" uid="uid://d33sh7qfurana" path="res://Music/SE/10_Battle_SFX/39_Block_03.wav" id="9_ncigy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qy7y5"]
@@ -457,8 +457,7 @@ libraries = {
 
 [node name="Weapons" type="Node2D" parent="." index="4"]
 
-[node name="Sword" parent="Weapons" index="0" instance=ExtResource("7_st21i")]
-visible = false
+[node name="Weapon" parent="Weapons" index="0" instance=ExtResource("7_jtq8y")]
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
 ignore_rotation = false

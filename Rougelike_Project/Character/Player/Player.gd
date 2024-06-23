@@ -6,12 +6,18 @@ const DUST_SCENE : PackedScene = preload("res://Character/dust.tscn")
 
 var current_weapon : Node2D
 
+signal weapon_switched(prev_index, new_index)
+signal weapon_picked_up(weapon_texture)
+signal weapon_droped(index)
+
 ## ノードを取得して格納している変数
 @onready var parent : Node2D = get_parent()
 @onready var weapons : Node2D = get_node("Weapons")
 @onready var dust_position : Marker2D = get_node("DustPoisiton")
 
 func _ready() -> void:
+	emit_signal("weapon_picked_up", weapons.get_child(0).get_texture())
+	
 	_restor_previous_state()
 
 func _restor_previous_state() -> void:
@@ -20,8 +26,15 @@ func _restor_previous_state() -> void:
 		weapon = weapon.duplicate()
 		weapon.position = Vector2.ZERO
 		weapons.add_child(weapon)
+		weapons.hide()
+		
+		emit_signal("weapon_picked_up", weapon.get_texture())
+		emit_signal("weapon_switched",weapons.get_child_count() - 2, weapons.get_child_count() -1)
+		
 	current_weapon = weapons.get_child(SavedData.equipped_weapon_index)
 	current_weapon.show()
+	
+	emit_signal("weapon_switched" , weapons,get_child_count() - 1,SavedData.equipped_weapon_index)
 	
 
 func _process(_delta : float) -> void:
@@ -53,7 +66,7 @@ func get_input() -> void: #入力の受付
 
 func _switch_weapon(direction : int) -> void:
 	var _prev_index: int = current_weapon.get_index()
-	var index : int = current_weapon.get_index()
+	var index : int = _prev_index
 	if direction == UP: #方向が上ならindexを-1する
 		index -= 1
 		if index < 0:
@@ -67,6 +80,8 @@ func _switch_weapon(direction : int) -> void:
 	current_weapon = weapons.get_child(index)
 	current_weapon.show()
 	SavedData.equipped_weapon_index = index
+	
+	emit_signal("weapon_switched", _prev_index, index)
 	
 func pick_up_weapon(weapon : Weapon) -> void: ### 武器を拾う処理
 	if weapon.on_floor:
@@ -87,11 +102,19 @@ func pick_up_weapon(weapon : Weapon) -> void: ### 武器を拾う処理
 		current_weapon = weapon
 		print("武器を獲得")
 		#現在の武器を隠し、最後に現在の武器を拾った武器に設定する。
-	
+		
+		emit_signal("weapon_picked_up", weapon.get_texture())
+		emit_signal("weapon_picked_up", _prev_index, new_index)
+
+
+
 func _drop_weapon() -> void:
 	SavedData.weapons.remove_at(current_weapon.get_index() - 1)
 	var weapon_to_drop : Node2D = current_weapon
 	_switch_weapon(UP)
+	
+	emit_signal("weapon_droped", weapon_to_drop.get_index())
+	
 	weapons.call_deferred("remove_child", weapon_to_drop) 
 	get_parent().call_deferred("add_child", weapon_to_drop)
 	weapon_to_drop.set_owner(get_parent())

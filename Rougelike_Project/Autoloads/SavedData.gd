@@ -1,6 +1,6 @@
 extends Node
 
-var num_floor : int = 2
+var num_floor : int = 0
 
 var hp: int = 4
 var weapons: Array = []

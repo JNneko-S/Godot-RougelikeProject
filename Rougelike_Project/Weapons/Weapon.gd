@@ -75,3 +75,5 @@ func _on_Tween_tween_complated() -> void:
 	PlayerDetector.set_collision_mask_value(2,true)
 	on_floor = true
 
+func get_texture() -> Texture:
+	return get_node("Node2D/Sprite").texture
