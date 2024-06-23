@@ -8,3 +8,6 @@ func initialize(texture : Texture2D) -> void:
 
 func select() -> void:
 	border.hide()
+
+func deselect() -> void:
+	border.hide()
