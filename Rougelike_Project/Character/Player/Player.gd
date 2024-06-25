@@ -106,8 +106,6 @@ func pick_up_weapon(weapon : Weapon) -> void: ### 武器を拾う処理
 		emit_signal("weapon_picked_up", weapon.get_texture())
 		emit_signal("weapon_picked_up", _prev_index, new_index)
 
-
-
 func _drop_weapon() -> void:
 	SavedData.weapons.remove_at(current_weapon.get_index() - 1)
 	var weapon_to_drop : Node2D = current_weapon

@@ -14,7 +14,6 @@ func _state_logic(_delta: float) -> void: #各状態ごとのロジック
 		parent.chase()
 		parent.move()
 
-
 func _get_transition() -> int: #状態遷移を決定するロジック
 	match state:
 		states.idle:

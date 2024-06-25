@@ -7,7 +7,6 @@ func _init() -> void:
 
 func _ready() -> void:
 	set_state(states.chase)
-	
 
 func _state_logic(_delta: float) -> void:
 	if state == states.chase:
