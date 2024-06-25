@@ -47,23 +47,32 @@ func _state_logic(_delta: float) -> void: #各状態ごとのロジック
 
 func _get_transition() -> int:
 	match state:
-		StateNames[state_idle]:
-			Timers._start_wander_timer(randf_range(1.2,3.0))
-			return states[_pickup_randomstate()]
+		states.idle:
+			if parent.Player_in_area_PD:
+				return states.chase
+			if Timers.get_time_left() == 0:
+				Timers.start_wander_timer(randf_range(1.2,3.0))
+				return states[_pickup_randomstate()]
 			
-		StateNames[state_wander]:
-			if Timers._time_remained() == 0:
-				Timers._start_wander_timer(randf_range(1.0,3.0))
+		states.wander:
+			if parent.Player_in_area_PD:
+				return states.chase
+			if Timers.get_time_left() == 0:
+				Timers.start_wander_timer(randf_range(1.2,3.0))
 				return states[_pickup_randomstate()]
 				
-		StateNames[state_hurt]:
+		states.hurt:
 			if not animation_player.is_playing():
 				return states.wander
 				
-		StateNames[state_attack]:
+		states.attack:
 			if not animation_player.is_playing():
 				return states.idle
 				
+		states.chase:
+			if parent.Player_in_area_AD:
+				return states.attack
+			
 	return -1
 
 func _pickup_randomstate() -> String:
@@ -84,6 +93,4 @@ func _enter_state(_previous_state: int, new_state: int) -> void:
 		states.hurt:
 			animation_player.play("hurt")
 
-func seek_player():
-	if playerDetectionZone.can_see_player():
-		return states.chase
+

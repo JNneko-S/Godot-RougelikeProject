@@ -5,16 +5,37 @@ extends Enemy
 @onready var finite_state_machine = $FiniteStateMachine
 
 @onready var hitbox = $Hitbox
-@onready var wander_timer = $Timers/WanderTimer
 @onready var Timers = $Timers
+
+var Player_in_area_PD : bool = false
+var Player_in_area_AD : bool = false
 
 func _process(_delta : float) -> void:
 	hitbox.knockback_direction = velocity.normalized()
 
 func _wander(_delta) -> void:
-	finite_state_machine.seek_player()
 	var direction = global_position.direction_to(Timers.target_position)
-	velocity = velocity.move_toward(direction * max_speed, accerelation * _delta)
+	velocity = velocity.move_toward(direction * 200, 200 * _delta)
 	
 	if global_position.distance_to(Timers.target_position) == WANDER_TARGET_RANGE:
-		wander_timer._start_wander_timer(randf_range(1,3))
+		Timers.start_wander_timer(randf_range(1,3))
+
+func _on_player_detector_body_entered(_body : Node2D) -> void:
+	if _body is CharacterBody2D:
+		Player_in_area_PD = true
+		print("PD true")
+
+func _on_player_detector_body_exited(_body : Node2D) -> void:
+	if _body is CharacterBody2D:
+		Player_in_area_PD = false
+		print("PD false")
+
+func _on_attack_detector_body_entered(_body : Node2D) -> void:
+	if _body is CharacterBody2D:
+		Player_in_area_AD = true
+		print("AD true")
+
+func _on_attack_detector_body_exited(_body : Node2D) -> void:
+	if _body is CharacterBody2D:
+		Player_in_area_AD = false
+		print("AD false")

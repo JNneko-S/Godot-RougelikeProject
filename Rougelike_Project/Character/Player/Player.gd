@@ -1,4 +1,5 @@
 extends Character 
+class_name Player
 
 enum {UP,DOWN}
 

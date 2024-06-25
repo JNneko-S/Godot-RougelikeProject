@@ -1,12 +1,24 @@
 [gd_scene load_steps=2 format=3 uid="uid://c3unegl2iyu6v"]
 
-[ext_resource type="Script" path="res://Nodes/PlayerDetector/player_detector.gd" id="1_ystg5"]
+[sub_resource type="GDScript" id="GDScript_b5yu1"]
+script/source = "extends Area2D
+
+@onready var player : CharacterBody2D = null
+
+func _on_body_entered(_body : Node2D) -> void:
+	if player is CharacterBody2D:
+		player = _body
+
+func _on_body_exited(_body: Node2D) -> void:
+	if _body == player:
+		player = null
+
+func can_see_player():
+	return player != null
+"
 
 [node name="PlayerDetector" type="Area2D"]
-script = ExtResource("1_ystg5")
+script = SubResource("GDScript_b5yu1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 debug_color = Color(0.592157, 0.545098, 0.156863, 0.419608)
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
