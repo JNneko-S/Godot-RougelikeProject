@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://c1theyerhf5tk"]
+[gd_scene load_steps=52 format=3 uid="uid://c1theyerhf5tk"]
 
 [ext_resource type="PackedScene" uid="uid://bwk6bh0chqfbe" path="res://Enemies/enemy.tscn" id="1_tpb1o"]
 [ext_resource type="Texture2D" uid="uid://bahls8af2j6ib" path="res://Arts/Tiny RPG Character Asset Pack v1.02 -Full 15 Characters/Skeleton/Skeleton with shadows/Skeleton-Death.png" id="2_8y0px"]
@@ -236,11 +236,15 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2hyvf"]
-radius = 12.0
-height = 32.0
+radius = 14.0
+height = 36.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_67kg8"]
 radius = 9.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xwfvl"]
+radius = 7.0
+height = 18.0
 
 [sub_resource type="Animation" id="Animation_hqksh"]
 length = 0.001
@@ -412,6 +416,42 @@ tracks/13/keys = {
 "update": 1,
 "values": [4]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath(".:shape")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CapsuleShape2D_xwfvl")]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath(".:shape:radius")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [7.0]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath(".:shape:height")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [18.0]
+}
 
 [sub_resource type="Animation" id="Animation_bsegs"]
 resource_name = "attack"
@@ -500,6 +540,30 @@ tracks/6/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".:shape:radius")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [7.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".:shape:height")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [18.0]
+}
 
 [sub_resource type="Animation" id="Animation_pvh42"]
 resource_name = "chase"
@@ -564,6 +628,30 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:shape:radius")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [7.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:shape:height")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [18.0]
 }
 
 [sub_resource type="Animation" id="Animation_kbb0i"]
@@ -667,6 +755,30 @@ tracks/7/keys = {
 "update": 1,
 "values": [true, true]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".:shape:radius")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [7.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".:shape:height")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [18.0]
+}
 
 [sub_resource type="Animation" id="Animation_6g57e"]
 resource_name = "hurt"
@@ -766,6 +878,30 @@ tracks/7/keys = {
 "update": 1,
 "values": [0, 0, 4]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".:shape:radius")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [7.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".:shape:height")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [18.0]
+}
 
 [sub_resource type="Animation" id="Animation_6ii75"]
 resource_name = "idle"
@@ -855,6 +991,30 @@ tracks/6/keys = {
 "update": 1,
 "values": [false, false]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".:shape:radius")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [7.0, 7.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".:shape:height")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [18.0, 18.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jr74j"]
 _data = {
@@ -878,8 +1038,8 @@ texture_filter = 1
 collision_mask = 13
 script = ExtResource("2_y7w4s")
 WANDER_TARGET_RANGE = 4.0
-accerelation = 18
-max_speed = 100
+accerelation = 16
+max_speed = 80
 
 [node name="FiniteStateMachine" parent="." index="0"]
 script = ExtResource("2_fcoq2")
@@ -897,7 +1057,7 @@ collision_mask = 2
 script = ExtResource("6_m8pqo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(8, -3)
+position = Vector2(7, -3)
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_2hyvf")
 disabled = true
@@ -917,6 +1077,15 @@ libraries = {
 [node name="PathTimer" parent="." index="5"]
 wait_time = 1.0
 
+[node name="NavigationAgent2D" parent="." index="6"]
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 100.0
+neighbor_distance = 750.0
+max_neighbors = 8
+time_horizon_agents = 0.0
+max_speed = 200.0
+
 [node name="Timers" type="Node2D" parent="." index="7"]
 script = ExtResource("11_vqjfo")
 WANDER_RANGE = 200
@@ -926,12 +1095,16 @@ one_shot = true
 autostart = true
 
 [node name="PlayerDetector" type="Area2D" parent="." index="8"]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
 shape = SubResource("CircleShape2D_cwgbt")
 debug_color = Color(0.945098, 0.839216, 0, 0.419608)
 
 [node name="AttackDetector" type="Area2D" parent="." index="9"]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetector" index="0"]
 position = Vector2(7, -3)

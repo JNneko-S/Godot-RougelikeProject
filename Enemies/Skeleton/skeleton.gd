@@ -6,6 +6,8 @@ extends Enemy
 
 @onready var hitbox = $Hitbox
 @onready var Timers = $Timers
+@onready var sprite = $AnimatedSprite2D
+
 
 var Player_in_area_PD : bool = false
 var Player_in_area_AD : bool = false
@@ -16,6 +18,7 @@ func _process(_delta : float) -> void:
 func _wander(_delta) -> void:
 	var direction = global_position.direction_to(Timers.target_position)
 	velocity = velocity.move_toward(direction * 200, 200 * _delta)
+	sprite.flip_h = velocity.x < 0
 	
 	if global_position.distance_to(Timers.target_position) == WANDER_TARGET_RANGE:
 		Timers.start_wander_timer(randf_range(1,3))

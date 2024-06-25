@@ -1086,6 +1086,7 @@ frame = 1
 
 [node name="PlayerDetector" parent="." index="1"]
 position = Vector2(1, 0)
+collision_mask = 2
 
 [node name="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2(20, 1)
