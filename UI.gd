@@ -31,5 +31,7 @@ func _on_player_weapon_picked_up(weapon_texture : Texture) -> void:
 	new_inventory_item.initialize(weapon_texture)
 
 func _on_player_weapon_switched(prev_index:int, new_index:int) -> void:
+	if prev_index == new_index:
+		return
 	inventory.get_child(prev_index).deselect()
 	inventory.get_child(new_index).select()

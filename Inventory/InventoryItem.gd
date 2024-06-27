@@ -7,7 +7,7 @@ func initialize(texture : Texture2D) -> void:
 	self.texture = texture
 
 func select() -> void:
-	border.hide()
+	border.show()
 
 func deselect() -> void:
 	border.hide()
