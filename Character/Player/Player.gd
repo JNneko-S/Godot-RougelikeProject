@@ -19,19 +19,21 @@ signal weapon_droped(index)
 func _ready() -> void:
 	emit_signal("weapon_picked_up", weapons.get_child(0).get_texture())
 	
-	_restor_previous_state()
+	_restore_previous_state()
 
-func _restor_previous_state() -> void:
+func _restore_previous_state() -> void:
 	self.hp = SavedData.hp
 	for weapon in SavedData.weapons:
 		weapon = weapon.duplicate()
 		weapon.position = Vector2.ZERO
 		weapons.add_child(weapon)
-		weapons.hide()
 		
 		emit_signal("weapon_picked_up", weapon.get_texture())
 		emit_signal("weapon_switched",weapons.get_child_count() - 2, weapons.get_child_count() -1)
-		
+	
+	for weapon in weapons.get_children():
+		weapon.hide()
+	
 	current_weapon = weapons.get_child(SavedData.equipped_weapon_index)
 	current_weapon.show()
 	
@@ -86,7 +88,9 @@ func _switch_weapon(direction : int) -> void:
 	
 func pick_up_weapon(weapon : Weapon) -> void: ### 武器を拾う処理
 	if weapon.on_floor:
-		SavedData.weapons.append(weapon.duplicate())
+		var weapon_clone = weapon.duplicate()
+		weapon_clone.on_floor = false
+		SavedData.weapons.append(weapon_clone)
 		var _prev_index : int = SavedData.equipped_weapon_index
 		var new_index : int = weapons.get_child_count()
 		SavedData.equipped_weapon_index = new_index
