@@ -235,16 +235,16 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xwfvl"]
+radius = 7.0
+height = 18.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2hyvf"]
-radius = 14.0
+radius = 16.0
 height = 36.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_67kg8"]
 radius = 9.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xwfvl"]
-radius = 7.0
-height = 18.0
 
 [sub_resource type="Animation" id="Animation_hqksh"]
 length = 0.001
@@ -455,7 +455,7 @@ tracks/16/keys = {
 
 [sub_resource type="Animation" id="Animation_bsegs"]
 resource_name = "attack"
-length = 0.6
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -656,7 +656,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_kbb0i"]
 resource_name = "dead"
-length = 1.2
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -664,7 +664,7 @@ tracks/0/path = NodePath("../AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7),
+"times": PackedFloat32Array(0, 1.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [&"Death", &"explosition"]
@@ -688,7 +688,7 @@ tracks/2/path = NodePath("../AnimatedSprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.7, 0.8, 0.9, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 1.6, 1.7, 1.8, 1.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 0, 1, 2, 3]
@@ -700,7 +700,7 @@ tracks/3/path = NodePath("../AnimatedSprite2D:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.1),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -712,7 +712,7 @@ tracks/4/path = NodePath("..")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(1.2),
+"times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -1027,10 +1027,10 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cwgbt"]
-radius = 70.0071
+radius = 85.0059
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_njmhd"]
-radius = 14.0
+radius = 17.0
 height = 38.0
 
 [node name="Skeleton" instance=ExtResource("1_tpb1o")]
@@ -1050,6 +1050,7 @@ animation = &"idle"
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_xwfvl")
 
 [node name="Hitbox" type="Area2D" parent="." index="3"]
 collision_layer = 0
@@ -1057,7 +1058,7 @@ collision_mask = 2
 script = ExtResource("6_m8pqo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(7, -3)
+position = Vector2(0, -3)
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_2hyvf")
 disabled = true
@@ -1107,7 +1108,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetector" index="0"]
-position = Vector2(7, -3)
+position = Vector2(0, -3)
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_njmhd")
 debug_color = Color(0.294118, 0.290196, 0, 0.419608)

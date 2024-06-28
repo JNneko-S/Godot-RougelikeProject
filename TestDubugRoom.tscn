@@ -1,12 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bm8buujk8mhs1"]
+[gd_scene load_steps=11 format=3 uid="uid://bm8buujk8mhs1"]
 
 [ext_resource type="PackedScene" uid="uid://wlxa345n3fp8" path="res://Rooms/Room.tscn" id="1_1vnab"]
 [ext_resource type="PackedScene" uid="uid://by1eeq8uuog5e" path="res://door.tscn" id="2_bxw8r"]
 [ext_resource type="PackedScene" uid="uid://bka0tlem72mwh" path="res://Character/Player/player.tscn" id="3_3np8y"]
-[ext_resource type="PackedScene" uid="uid://c1theyerhf5tk" path="res://Enemies/Skeleton/skeleton.tscn" id="4_vf3bp"]
 [ext_resource type="PackedScene" uid="uid://ct30e0c74lgph" path="res://items/health_positon.tscn" id="5_lsvnu"]
-[ext_resource type="PackedScene" uid="uid://cbodq3xp55rpw" path="res://Weapons/Hammer.tscn" id="5_yx3os"]
 [ext_resource type="PackedScene" uid="uid://dfmd10roxgncw" path="res://Weapons/Spear.tscn" id="6_ysp1c"]
+[ext_resource type="PackedScene" uid="uid://bpud81jgxeqtj" path="res://Enemies/Ghost/ghost.tscn" id="7_p2il2"]
 
 [sub_resource type="SystemFont" id="SystemFont_7l3kw"]
 
@@ -84,31 +83,21 @@ position = Vector2(64, 63)
 [node name="Player" parent="." index="7" instance=ExtResource("3_3np8y")]
 position = Vector2(109, 166)
 
-[node name="Weapon" parent="." index="9" instance=ExtResource("5_yx3os")]
-visible = false
-position = Vector2(233, 106)
-on_floor = true
-
-[node name="Weapon2" parent="." index="10" instance=ExtResource("5_yx3os")]
-visible = false
-position = Vector2(233, 67)
-on_floor = true
-
-[node name="HealthPositon" parent="." index="11" instance=ExtResource("5_lsvnu")]
+[node name="HealthPositon" parent="." index="9" instance=ExtResource("5_lsvnu")]
 position = Vector2(296, 136)
 
-[node name="HealthPositon2" parent="." index="12" instance=ExtResource("5_lsvnu")]
+[node name="HealthPositon2" parent="." index="10" instance=ExtResource("5_lsvnu")]
 position = Vector2(312, 136)
 
-[node name="HealthPositon3" parent="." index="13" instance=ExtResource("5_lsvnu")]
+[node name="HealthPositon3" parent="." index="11" instance=ExtResource("5_lsvnu")]
 position = Vector2(328, 136)
 
-[node name="Spear" parent="." index="14" instance=ExtResource("6_ysp1c")]
+[node name="Spear" parent="." index="12" instance=ExtResource("6_ysp1c")]
 position = Vector2(155, 93)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2(55, 135.5)
 shape = SubResource("RectangleShape2D_16frk")
 
-[node name="Skeleton" parent="." index="16" instance=ExtResource("4_vf3bp")]
-position = Vector2(242, 54)
+[node name="Ghost" parent="." index="14" instance=ExtResource("7_p2il2")]
+position = Vector2(271, 49)

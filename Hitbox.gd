@@ -5,7 +5,7 @@ class_name Hitbox
 @export var knockback_force : int = 300
 
 @onready var collision_shape : CollisionShape2D = get_child(0)
-@onready var timer :Timer = Timer.new()
+@onready var timer : Timer = Timer.new()
 
 var knockback_direction : Vector2 = Vector2.ZERO
 var body_inside : bool = false
