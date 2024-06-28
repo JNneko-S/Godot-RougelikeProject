@@ -8,13 +8,17 @@ const SPAWN_EXPLOSION_SCENE : PackedScene = preload("res://Enemies/spawn_explosi
 const ENEMY_SCENES : Dictionary = {
 	"FLYING_CREATURE" : preload("res://Enemies/FlyingCreature/Flying_creature.tscn"),
 	"GOBLIN" : preload("res://Enemies/Goblin/goblin.tscn"),
-	"Minotaur" : preload("res://Enemies/Minotaur/Minotaur.tscn")
+	"MINOTAUR" : preload("res://Enemies/Minotaur/Minotaur.tscn"),
+	"GHOST" : preload("res://Enemies/Ghost/ghost.tscn"),
+	"SKELETON" : preload("res://Enemies/Skeleton/skeleton.tscn")
 }
 
 const ENEMY_SPAWN_WEIGHT : Dictionary = {
-	"FLYING_CREATURE" : 8,
+	"FLYING_CREATURE" : 10,
 	"GOBLIN" : 3,
-	"Minotaur" : 1
+	"MINOTAUR" : 1,
+	"GHOST" : 5,
+	"SKELETON" : 5
 }
 
 #敵の数

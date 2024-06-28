@@ -72,6 +72,8 @@ func _get_transition() -> int:
 		states.chase:
 			if parent.Player_in_area_AD:
 				return states.attack
+			if not parent.Player_in_area_PD:
+				return states[_pickup_randomstate()]
 			
 	return -1
 
