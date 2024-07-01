@@ -3,10 +3,11 @@
 extends Enemy
 
 func _process(_delta : float) -> void:
-	if player.global_position.y > global_position.y:
-		z_index = 0
-	else:
-		z_index = 1
+	if player != null:
+		if player.global_position.y > global_position.y:
+			z_index = 0
+		else:
+			z_index = 1
 
 func duplicate_slime() -> void:
 	if scale > Vector2(1, 1):
@@ -22,3 +23,4 @@ func _spawn_slime(direction : Vector2) -> void:
 	slime.max_hp = max_hp/2.0
 	get_parent().add_child(slime)
 	slime.velocity += direction * 150
+	intermediate_room.num_enemies += 1

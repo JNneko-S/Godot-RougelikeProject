@@ -376,7 +376,7 @@ radius = 16.0
 height = 74.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5lbip"]
-radius = 14.0
+radius = 12.0
 height = 38.0
 
 [sub_resource type="Animation" id="Animation_rfn8d"]
@@ -1395,11 +1395,12 @@ script = ExtResource("3_3mr7p")
 [node name="AnimatedSprite2D" parent="." index="1"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_haa0v")
+position = Vector2(1, 0)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_oqibe")
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(-3, 0)
+position = Vector2(-2, 2)
 rotation = 3.14159
 
 [node name="Hitbox" type="Area2D" parent="." index="3"]
@@ -1408,14 +1409,14 @@ collision_mask = 2
 script = ExtResource("3_kkh4n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(5, 7)
+position = Vector2(0, 7)
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_7nogc")
 disabled = true
 debug_color = Color(1, 0.00784314, 0.0392157, 0.419608)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox" index="1"]
-position = Vector2(-3, -4)
+position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_5lbip")
 debug_color = Color(0.643137, 0, 0.0941176, 0.419608)
 
@@ -1447,7 +1448,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(5, 7)
+position = Vector2(0, 7)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_k7hf5")
 debug_color = Color(0.654902, 0.513726, 0.188235, 0.419608)

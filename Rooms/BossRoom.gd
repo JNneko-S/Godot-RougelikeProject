@@ -27,7 +27,6 @@ func _spawn_enemies() -> void:
 		var enemy: CharacterBody2D
 		
 		enemy = BOSS_SCENES["SlimeBoss"].instantiate()
-		num_enemies = 15
 		
 		enemy.position = boss_positions.position #また、敵の位置は子ノードの位置に準ずる
 		self.call_deferred("add_child", enemy)

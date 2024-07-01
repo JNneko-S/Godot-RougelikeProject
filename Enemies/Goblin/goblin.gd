@@ -2,7 +2,7 @@ extends Enemy #Characterから継承されている
 
 const THROWABLE_KNIFE_SCENE : PackedScene = preload("res://Enemies/Goblin/ThrowableKnife.tscn")
 
-const MAX_DISTANCE_TO_PLAYER : int = 150 #ゴブリンが動かない最大距離
+const MAX_DISTANCE_TO_PLAYER : int = 150 #最大距離
 const MIN_DISTANCE_TO_PLAYER : int = 30 #最小距離
 
 var distance_to_player : float

@@ -192,6 +192,7 @@ texture = ExtResource("1_hfemv")
 2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:1/0/physics_layer_0/angular_velocity = 0.0
 2:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_s30vy")
+2:1/0/custom_data_0 = true
 3:1/0 = 0
 3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_0/angular_velocity = 0.0
@@ -359,6 +360,8 @@ texture = ExtResource("1_hfemv")
 [sub_resource type="TileSet" id="TileSet_1duc5"]
 physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
+custom_data_layer_0/name = "Spawnable"
+custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_6jtp1")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4x5tk"]

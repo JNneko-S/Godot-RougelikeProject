@@ -3,12 +3,16 @@
 extends Character
 class_name Enemy
 
+var intermediate_room : Room
+
+@onready var hitbox_collisions : Hitbox = get_node("Hitbox")
 @onready var Path_timer : Timer = get_node("PathTimer")
 @onready var player : CharacterBody2D = get_tree().current_scene.get_node("Player")
 @onready var Navi_agent : NavigationAgent2D = get_node("NavigationAgent2D")
 
 func _ready() -> void:
 	var __ = connect("tree_exited", Callable(get_parent(), "_on_enemy_killed"))
+	intermediate_room = get_parent()
 
 func chase() -> void:
 	if not Navi_agent.is_target_reached():
@@ -16,8 +20,10 @@ func chase() -> void:
 		move_direction = vector_to_next_point.normalized()
 		if vector_to_next_point.x > 0 and Animated_Sprite.flip_h:
 			Animated_Sprite.flip_h = false
+			hitbox_collisions.scale.x = 1
 		elif vector_to_next_point.x < 0 and not Animated_Sprite.flip_h:
 			Animated_Sprite.flip_h = true
+			hitbox_collisions.scale.x = -1
 
 func _get_path_to_player() -> void:
 	Navi_agent.target_position = player.global_position

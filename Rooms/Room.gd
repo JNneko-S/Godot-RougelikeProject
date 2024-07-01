@@ -32,8 +32,9 @@ const ENEMY_SPAWN_WEIGHT : Dictionary = {
 @onready var player_detector : Area2D = get_node("PlayerDetector")
 
 func _ready() -> void:
-	num_enemies = enemy_positions_container.get_child_count() 
-	#親ノードのEnemyPositionsを取得し、その親の子ノードをカウントしている
+	num_enemies = enemy_positions_container.get_child_count()
+	print("敵の数をカウント")
+	#Roomノードの中にあるenemy_positionsのノードの数を取得し、その親の子ノードをカウントしている
 
 func _on_enemy_killed() -> void: #キルカウント
 	num_enemies -= 1 
@@ -83,10 +84,16 @@ func _spawn_enemies() -> void: #敵の出現の処理
 
 #プレイヤーがPlayerDetectorという当たり判定に入った時の処理
 func _on_PlayerDetector_body_entered(_body : CharacterBody2D) -> void:
+	print("PDに入る")
 	player_detector.queue_free() #まずplayer_detectorはきえる
+	print("PDが消える")
 	if num_enemies > 0: #敵の数が0より大きかったらドアを閉じて敵をスポーンさせる
 		_close_entrance()
+		print("エントランスが閉まる")
 		_spawn_enemies()
+		print("敵がスポーンをする")
 	else:
 		_close_entrance()
+		print("エントランスが閉まる2")
 		_open_doors()
+		print("ドアが開く")

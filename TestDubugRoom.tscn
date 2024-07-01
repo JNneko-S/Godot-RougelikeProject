@@ -81,7 +81,7 @@ position = Vector2(126, 63)
 position = Vector2(64, 63)
 
 [node name="Player" parent="." index="7" instance=ExtResource("3_3np8y")]
-position = Vector2(109, 166)
+position = Vector2(191, 133)
 
 [node name="HealthPositon" parent="." index="9" instance=ExtResource("5_lsvnu")]
 position = Vector2(296, 136)
@@ -100,4 +100,4 @@ position = Vector2(55, 135.5)
 shape = SubResource("RectangleShape2D_16frk")
 
 [node name="Ghost" parent="." index="14" instance=ExtResource("7_p2il2")]
-position = Vector2(271, 49)
+position = Vector2(236, 81)
